@@ -27985,6 +27985,8196 @@
         ]
       },
       "trackStepCounts": {}
+    },
+    "part_c": {
+      "id": "part_c",
+      "name": "Parte C",
+      "description": "Terceira levada rítmica - Refrão com batucada cheia e repique",
+      "trackSteps": {
+        "track_1791921784118_8le6": [
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 95,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 95,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 95,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 95,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 95,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 95,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 95,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 95,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791921944261_ehwz": [
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791922147859_x6pu": [
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 110,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 110,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 110,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 110,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791922209602_lg2d": [
+          {
+            "active": true,
+            "velocity": 115,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 115,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 115,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 115,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 115,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 115,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 110,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791922854225_that": [
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 110,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 110,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791923037974_92xw": [
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 115,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 115,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 110,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791923095566_g5of": [
+          {
+            "active": true,
+            "velocity": 120,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 95,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 120,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 95,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ]
+      }
+    },
+    "fill_c": {
+      "id": "fill_c",
+      "name": "Fill C",
+      "description": "Virada explosiva da Parte C com repique de caixa e marcações firmes",
+      "trackSteps": {
+        "track_1791921784118_8le6": [
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791921944261_ehwz": [
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 95,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 95,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 110,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 115,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 120,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791922147859_x6pu": [
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 115,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 115,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 120,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791922209602_lg2d": [
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 110,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 110,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 115,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 115,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 120,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 120,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 127,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 127,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 127,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 127,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791922854225_that": [
+          {
+            "active": true,
+            "velocity": 120,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 115,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 120,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 127,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 127,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791923037974_92xw": [
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 105,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 110,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 115,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 120,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 127,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 127,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 127,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 127,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791923095566_g5of": [
+          {
+            "active": true,
+            "velocity": 120,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 120,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 127,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 127,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 127,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ]
+      }
+    },
+    "transition_b_c": {
+      "id": "transition_b_c",
+      "name": "Transição B -> C",
+      "description": "Crescendo da Parte B para a Parte C acionada no Pedal 2 (1 toque)",
+      "trackSteps": {
+        "track_1791921784118_8le6": [
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791921944261_ehwz": [
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 105,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 115,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 120,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791922147859_x6pu": [
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 105,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 110,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 120,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791922209602_lg2d": [
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 95,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 110,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 115,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 120,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 127,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791922854225_that": [
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 105,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 115,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 127,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791923037974_92xw": [
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 95,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 105,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 115,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 120,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 127,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791923095566_g5of": [
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 120,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 127,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ]
+      }
+    },
+    "transition_c_b": {
+      "id": "transition_c_b",
+      "name": "Transição C -> B",
+      "description": "Retorno da Parte C para a Parte B acionada no Pedal 2 (2 toques)",
+      "trackSteps": {
+        "track_1791921784118_8le6": [
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791921944261_ehwz": [
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 95,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791922147859_x6pu": [
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 95,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791922209602_lg2d": [
+          {
+            "active": true,
+            "velocity": 110,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 110,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 95,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791922854225_that": [
+          {
+            "active": true,
+            "velocity": 120,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 110,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 95,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791923037974_92xw": [
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 110,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 95,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791923095566_g5of": [
+          {
+            "active": true,
+            "velocity": 120,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ]
+      }
+    },
+    "transition_c_a": {
+      "id": "transition_c_a",
+      "name": "Transição C -> A",
+      "description": "Retorno da Parte C para a Parte A acionada no Pedal 2 (1 toque)",
+      "trackSteps": {
+        "track_1791921784118_8le6": [
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791921944261_ehwz": [
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 95,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 85,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791922147859_x6pu": [
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 85,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791922209602_lg2d": [
+          {
+            "active": true,
+            "velocity": 110,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 95,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791922854225_that": [
+          {
+            "active": true,
+            "velocity": 115,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 105,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 95,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791923037974_92xw": [
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791923095566_g5of": [
+          {
+            "active": true,
+            "velocity": 110,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ]
+      }
+    },
+    "transition_a_c": {
+      "id": "transition_a_c",
+      "name": "Transição A -> C",
+      "description": "Transição direta da Parte A para a Parte C",
+      "trackSteps": {
+        "track_1791921784118_8le6": [
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791921944261_ehwz": [
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 105,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 115,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 120,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791922147859_x6pu": [
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 105,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 110,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 120,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791922209602_lg2d": [
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 95,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 110,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 115,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 120,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 127,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791922854225_that": [
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 105,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 115,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 127,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791923037974_92xw": [
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 95,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 105,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 115,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 120,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 127,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ],
+        "track_1791923095566_g5of": [
+          {
+            "active": true,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 100,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 120,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 125,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": true,
+            "velocity": 127,
+            "probability": 1,
+            "ratchet": 1
+          },
+          {
+            "active": false,
+            "velocity": 90,
+            "probability": 1,
+            "ratchet": 1
+          }
+        ]
+      }
     }
   }
 }

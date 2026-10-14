@@ -1,6 +1,6 @@
 {
-  "name": "BeatBuddy Studio - Percussion & Rhythm Sequencer",
-  "short_name": "BeatBuddy",
+  "name": "SB Beats Studio",
+  "short_name": "SB Beats",
   "description": "Estúdio profissional para criação de ritmos, sequenciamento de percussões complexas e pedal BeatBuddy.",
   "start_url": "/",
   "display": "standalone",

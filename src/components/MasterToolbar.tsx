@@ -18,6 +18,8 @@ import {
   Check,
   Download,
   Disc3,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 import { SongProject, TimeSignature, RhythmicResolution } from '../types/rhythm';
 
@@ -296,7 +298,7 @@ export const MasterToolbar: React.FC<MasterToolbarProps> = ({
                 <optgroup label="⭐ Meus Ritmos Salvos">
                   {customRhythms.map((p) => (
                     <option key={p.id} value={p.id}>
-                      {p.name}
+                      {p.name.replace(/\s*\(\d+.*?\)/g, '').trim() || p.name}
                     </option>
                   ))}
                 </optgroup>
@@ -304,11 +306,37 @@ export const MasterToolbar: React.FC<MasterToolbarProps> = ({
               <optgroup label="🥁 Presets de Fábrica">
                 {factoryPresets.map((p) => (
                   <option key={p.id} value={p.id}>
-                    {p.name}
+                    {p.name.replace(/\s*\(\d+.*?\)/g, '').trim() || p.name}
                   </option>
                 ))}
               </optgroup>
             </select>
+
+            {/* Quick Prev / Next Rhythm Buttons */}
+            <button
+              type="button"
+              title="Ritmo Anterior"
+              onClick={() => {
+                const currentIndex = rhythms.findIndex((r) => r.id === project.id);
+                const prev = rhythms[(currentIndex - 1 + rhythms.length) % rhythms.length];
+                onSelectPreset(prev);
+              }}
+              className="p-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-amber-400 cursor-pointer transition-colors"
+            >
+              <ChevronLeft className="w-3.5 h-3.5" />
+            </button>
+            <button
+              type="button"
+              title="Próximo Ritmo"
+              onClick={() => {
+                const currentIndex = rhythms.findIndex((r) => r.id === project.id);
+                const next = rhythms[(currentIndex + 1) % rhythms.length];
+                onSelectPreset(next);
+              }}
+              className="p-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-amber-400 cursor-pointer transition-colors"
+            >
+              <ChevronRight className="w-3.5 h-3.5" />
+            </button>
 
             {/* + Criar Novo Ritmo */}
             <button

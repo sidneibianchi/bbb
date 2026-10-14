@@ -426,12 +426,42 @@ export function deleteUserDrumKit(kitId: string): void {
   }
 }
 
+const KITS_ORDER_STORAGE_KEY = 'beatbuddy_kits_order_v1';
+
 /**
- * Returns all drum kits available (user kits + factory kits)
+ * Reorders drum kits list and persists preference
+ */
+export function reorderDrumKits(orderedIds: string[]): void {
+  try {
+    localStorage.setItem(KITS_ORDER_STORAGE_KEY, JSON.stringify(orderedIds));
+  } catch (err) {
+    console.error('Failed to save kits order to localStorage', err);
+  }
+}
+
+/**
+ * Returns all drum kits available (user kits + factory kits) sorted by custom preference
  */
 export function getAllDrumKits(): DrumKitDefinition[] {
   const userKits = getUserDrumKits();
-  return [...userKits, ...FACTORY_DRUM_KITS];
+  const all = [...userKits, ...FACTORY_DRUM_KITS];
+
+  try {
+    const savedOrder = localStorage.getItem(KITS_ORDER_STORAGE_KEY);
+    if (savedOrder) {
+      const orderIds: string[] = JSON.parse(savedOrder);
+      all.sort((a, b) => {
+        const idxA = orderIds.indexOf(a.id);
+        const idxB = orderIds.indexOf(b.id);
+        if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+        if (idxA !== -1) return -1;
+        if (idxB !== -1) return 1;
+        return 0;
+      });
+    }
+  } catch {}
+
+  return all;
 }
 
 /**

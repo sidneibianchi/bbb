@@ -19,6 +19,7 @@ import { FootswitchConfigModal } from './components/FootswitchConfigModal';
 import { SamplesLibraryView } from './components/SamplesLibraryView';
 import { DrumKitManagerModal } from './components/DrumKitManagerModal';
 import { DrumKitDefinition } from './types/kit';
+import { MobileLiveView } from './components/MobileLiveView';
 import { AudioVisualizer } from './components/AudioVisualizer';
 import { MobileAndPedalGuideModal } from './components/MobileAndPedalGuideModal';
 import { ShareMobileModal } from './components/ShareMobileModal';
@@ -55,6 +56,21 @@ export default function App() {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [isFirebaseLoading, setIsFirebaseLoading] = useState(false);
 
+  // Helper to sanitize project names and migrate outdated 2/4 formulas
+  const sanitizeProject = (p: SongProject): SongProject => {
+    const cleanName = (p.name || '')
+      .replace(/\s*\(\d+.*?\)/g, '')
+      .trim() || p.name || 'Ritmo Sem Nome';
+    const timeSig = (!p.timeSignature || (p.timeSignature as string) === '2/4') ? '4/4' : p.timeSignature;
+    return {
+      ...p,
+      name: cleanName,
+      timeSignature: timeSig as any,
+      barsCount: p.barsCount === 2 ? 1 : (p.barsCount || 1),
+      resolution: p.resolution === '1/16' ? '1/32' : (p.resolution || '1/32'),
+    };
+  };
+
   // Persistent Rhythms Library
   const [rhythms, setRhythms] = useState<SongProject[]>(() => {
     try {
@@ -62,45 +78,43 @@ export default function App() {
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed.map((p: SongProject) => ({
-            ...p,
-            barsCount: p.barsCount === 2 ? 1 : (p.barsCount || 1),
-            resolution: p.resolution === '1/16' ? '1/32' : (p.resolution || '1/32'),
-          }));
+          return parsed.map((p: SongProject) => sanitizeProject(p));
         }
       }
     } catch (e) {
       console.error('Failed to load rhythms from localStorage', e);
     }
-    return availablePresets;
+    return availablePresets.map((p) => sanitizeProject(p));
   });
 
   const [project, setProject] = useState<SongProject>(() => {
     const p = rhythms[0] || sambaPreset;
-    return {
-      ...p,
-      barsCount: p.barsCount === 2 ? 1 : (p.barsCount || 1),
-      resolution: p.resolution === '1/16' ? '1/32' : (p.resolution || '1/32'),
-    };
+    return sanitizeProject(p);
   });
 
-  const [isMobileScreen] = useState(() => {
+  const checkIsMobileOrTablet = () => {
     if (typeof window === 'undefined') return false;
-    return (
-      window.innerWidth < 768 ||
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const isWidth = window.innerWidth <= 1024;
+    const isUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Tablet/i.test(
+      navigator.userAgent
     );
-  });
+    return isWidth || (isTouch && window.innerWidth <= 1280) || isUA;
+  };
 
-  const [activeView, setActiveView] = useState<'sequencer' | 'pedal' | 'samples'>(() => {
-    if (typeof window !== 'undefined') {
-      const isMobile =
-        window.innerWidth < 768 ||
-        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      if (isMobile) return 'pedal';
-    }
-    return 'sequencer';
-  });
+  const [isMobileScreen, setIsMobileScreen] = useState(checkIsMobileOrTablet);
+  const [forceDesktopMode, setForceDesktopMode] = useState(false);
+  const [isManualMobileLiveView, setIsManualMobileLiveView] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileScreen(checkIsMobileOrTablet());
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const [activeView, setActiveView] = useState<'sequencer' | 'pedal' | 'samples'>('sequencer');
   const [activePartId, setActivePartId] = useState<SongPartId>('verse');
   const [playingPartId, setPlayingPartId] = useState<SongPartId>('verse');
   const [isPlaying, setIsPlaying] = useState(false);
@@ -499,6 +513,24 @@ export default function App() {
       },
       onSamplesUpdated: (samples) => {
         setCustomSamplesList(samples);
+      },
+      onRhythmChanged: (newProj, activeBpm) => {
+        setProject(newProj);
+        setActivePartId('verse');
+        setPlayingPartId('verse');
+        setBasePartId('verse');
+        setSelectedStartPart('verse');
+        setIsFill(false);
+        setActiveFillId(null);
+        setIsTransition(false);
+        setActiveTransitionId(null);
+        setIsIntro(false);
+        setIsOutro(false);
+        localStorage.setItem('beatbuddy_active_rhythm_id', newProj.id);
+        saveActiveRhythmToServer(newProj.id).catch(() => {});
+        triggerPedalToast(
+          `🎵 Ritmo trocado no compasso: ${newProj.name.replace(/\s*\(\d+.*?\)/g, '').trim()} (Parte A • ${activeBpm} BPM)`
+        );
       },
     });
   }, []);
@@ -1131,12 +1163,24 @@ export default function App() {
   };
 
   const handleSelectPreset = (preset: SongProject) => {
-    audioEngine.stop();
-    setProject(preset);
-    setActivePartId('verse');
-    setPlayingPartId('verse');
-    localStorage.setItem('beatbuddy_active_rhythm_id', preset.id);
-    saveActiveRhythmToServer(preset.id).catch(() => {});
+    // If stopped: switch immediately and update state
+    if (!isPlaying) {
+      audioEngine.switchRhythm(preset, true);
+      setProject(preset);
+      setActivePartId('verse');
+      setPlayingPartId('verse');
+      setBasePartId('verse');
+      setSelectedStartPart('verse');
+      localStorage.setItem('beatbuddy_active_rhythm_id', preset.id);
+      saveActiveRhythmToServer(preset.id).catch(() => {});
+      return;
+    }
+
+    // If currently playing: transition in-time at the end of the current bar without stopping!
+    audioEngine.switchRhythm(preset, true);
+    triggerPedalToast(
+      `⏳ Mudando para "${preset.name.replace(/\s*\(\d+.*?\)/g, '').trim()}" no final do compasso (Parte A • Mantendo ${project.bpm} BPM)...`
+    );
   };
 
   const handleSelectPart = (partId: SongPartId) => {
@@ -1610,27 +1654,115 @@ export default function App() {
   const currentPartData = project.parts[activePartId] || project.parts['verse'];
   const playingPartData = project.parts[playingPartId] || project.parts['verse'];
 
+  const handlePedal1DownAction = (isRepeat = false) => {
+    if (pedalActionCallbacksRef.current.onPedal1Down) {
+      pedalActionCallbacksRef.current.onPedal1Down(isRepeat);
+    } else {
+      audioEngine.handlePedal1Tap();
+    }
+  };
+  const handlePedal1UpAction = () => {
+    if (pedalActionCallbacksRef.current.onPedal1Up) {
+      pedalActionCallbacksRef.current.onPedal1Up();
+    }
+  };
+  const handlePedal2DownAction = () => {
+    if (pedalActionCallbacksRef.current.onPedal2Down) {
+      pedalActionCallbacksRef.current.onPedal2Down();
+    } else {
+      audioEngine.handlePedal2Tap();
+    }
+  };
+  const handlePedal2UpAction = () => {
+    if (pedalActionCallbacksRef.current.onPedal2Up) {
+      pedalActionCallbacksRef.current.onPedal2Up();
+    }
+  };
+
+  const showMobileLiveOnly = (isMobileScreen && !forceDesktopMode) || isManualMobileLiveView;
+
   return (
-    <div className="min-h-screen flex flex-col bg-[#090d16] text-slate-100 font-sans selection:bg-amber-400 selection:text-slate-950">
-      {/* Header */}
-      <Header
-        activeView={activeView}
-        onSelectView={setActiveView}
-        onOpenCreateModal={() => setIsCreateRhythmOpen(true)}
-        onOpenDrumKitModal={() => setIsDrumKitModalOpen(true)}
-        onOpenFootswitchModal={() => setIsFootswitchConfigOpen(true)}
-        onOpenMobileGuide={() => setIsMobileGuideOpen(true)}
-        onOpenShareMobile={() => setIsShareMobileOpen(true)}
-        isSyncing={isSyncing}
-        lastSyncTime={lastSyncTime}
-        onManualSync={performCloudSync}
-        currentUser={currentUser}
-        isFirebaseLoading={isFirebaseLoading}
-        onLoginFirebase={handleLoginFirebase}
-        onLogoutFirebase={handleLogoutFirebase}
-        isPedalEnabled={isPedalEnabled}
-        onTogglePedalEnabled={togglePedalEnabled}
-      />
+    <div
+      className={`flex flex-col bg-[#070b14] text-slate-100 font-sans selection:bg-amber-400 selection:text-slate-950 ${
+        showMobileLiveOnly ? 'h-[100dvh] max-h-[100dvh] overflow-hidden' : 'min-h-screen'
+      }`}
+    >
+      {/* SE ESTIVER NO CELULAR OU TABLET: EXIBE EXATAMENTE O PROTÓTIPO SOLICITADO */}
+      {showMobileLiveOnly ? (
+        <MobileLiveView
+          project={project}
+          rhythms={rhythms}
+          onSelectProject={handleSelectPreset}
+          masterVolume={masterVolume}
+          onMasterVolumeChange={handleMasterVolumeChange}
+          onBpmChange={handleBpmChange}
+          isPlaying={isPlaying}
+          currentBeat={currentBeat}
+          currentBar={currentBar}
+          isIntro={isIntro}
+          isOutro={isOutro}
+          isFill={isFill}
+          isTransition={isTransition}
+          activeFillId={activeFillId}
+          activeTransitionId={activeTransitionId}
+          selectedStartPart={selectedStartPart}
+          basePartId={basePartId}
+          onPedal1Down={handlePedal1DownAction}
+          onPedal1Up={handlePedal1UpAction}
+          onPedal2Down={handlePedal2DownAction}
+          onPedal2Up={handlePedal2UpAction}
+          isPedal1Pressed={isExternalPedal1Pressed}
+          isPedal2Pressed={isExternalPedal2Pressed}
+          isPedalEnabled={isPedalEnabled}
+          onTogglePedalEnabled={togglePedalEnabled}
+          onOpenFootswitchModal={() => setIsFootswitchConfigOpen(true)}
+          onOpenStudioView={() => {
+            setIsManualMobileLiveView(false);
+            setForceDesktopMode(true);
+          }}
+          isAudioUnlocked={isAudioUnlocked}
+          onUnlockAudio={() => {
+            audioEngine.unlockAudioContext();
+            audioEngine.preloadAllServerSamples();
+            setIsAudioUnlocked(true);
+          }}
+        />
+      ) : (
+        <>
+          {/* Top Banner when viewing Desktop mode on mobile */}
+          {isMobileScreen && forceDesktopMode && (
+            <div className="bg-amber-950/90 border-b border-amber-500/80 px-4 py-2 flex items-center justify-between text-xs text-amber-200">
+              <span className="font-semibold">🖥️ Modo Estúdio Completo (PC) Ativo</span>
+              <button
+                type="button"
+                onClick={() => setForceDesktopMode(false)}
+                className="px-3 py-1 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold rounded-lg cursor-pointer shadow-sm"
+              >
+                Voltar ao Modo Celular (Live)
+              </button>
+            </div>
+          )}
+
+          {/* Header */}
+          <Header
+            activeView={activeView}
+            onSelectView={setActiveView}
+            onOpenCreateModal={() => setIsCreateRhythmOpen(true)}
+            onOpenDrumKitModal={() => setIsDrumKitModalOpen(true)}
+            onEnterMobileLiveView={() => setIsManualMobileLiveView(true)}
+            onOpenFootswitchModal={() => setIsFootswitchConfigOpen(true)}
+            onOpenMobileGuide={() => setIsMobileGuideOpen(true)}
+            onOpenShareMobile={() => setIsShareMobileOpen(true)}
+            isSyncing={isSyncing}
+            lastSyncTime={lastSyncTime}
+            onManualSync={performCloudSync}
+            currentUser={currentUser}
+            isFirebaseLoading={isFirebaseLoading}
+            onLoginFirebase={handleLoginFirebase}
+            onLogoutFirebase={handleLogoutFirebase}
+            isPedalEnabled={isPedalEnabled}
+            onTogglePedalEnabled={togglePedalEnabled}
+          />
 
       {/* Mobile Audio Activation Banner (shown until first user touch/click) */}
       {!isAudioUnlocked && (
@@ -1973,6 +2105,8 @@ export default function App() {
           />
         )}
       </main>
+      </>
+      )}
 
       {/* Track Sound & Custom Sample Modal */}
       {editingTrack && (

@@ -20,6 +20,8 @@ import {
   Sparkles,
   Sliders,
   Volume2,
+  ArrowUp,
+  ArrowDown,
 } from 'lucide-react';
 import { DrumKitDefinition } from '../types/kit';
 import { TrackDefinition, InstrumentCategory } from '../types/rhythm';
@@ -29,6 +31,7 @@ import {
   deleteUserDrumKit,
   getAllDrumKits,
   exportKitAsJson,
+  reorderDrumKits,
   FACTORY_DRUM_KITS,
 } from '../services/kitStorage';
 import { audioEngine } from '../audio/AudioEngine';
@@ -216,6 +219,30 @@ export const DrumKitManagerModal: React.FC<DrumKitManagerModalProps> = ({
     });
   };
 
+  const handleMoveDraftTrack = (index: number, direction: 'up' | 'down') => {
+    const target = direction === 'up' ? index - 1 : index + 1;
+    if (target < 0 || target >= draftKit.tracks.length) return;
+    setDraftKit((prev) => {
+      const nextTracks = [...prev.tracks];
+      const [moved] = nextTracks.splice(index, 1);
+      nextTracks.splice(target, 0, moved);
+      return { ...prev, tracks: nextTracks };
+    });
+  };
+
+  const handleMoveKit = (kitId: string, direction: 'up' | 'down') => {
+    const index = kits.findIndex((k) => k.id === kitId);
+    if (index === -1) return;
+    const target = direction === 'up' ? index - 1 : index + 1;
+    if (target < 0 || target >= kits.length) return;
+    const nextKits = [...kits];
+    const [moved] = nextKits.splice(index, 1);
+    nextKits.splice(target, 0, moved);
+    setKits(nextKits);
+    reorderDrumKits(nextKits.map((k) => k.id));
+    setStatusMsg(`Ordem do kit "${moved.name}" atualizada.`);
+  };
+
   const handleRemoveDraftTrack = (index: number) => {
     setDraftKit((prev) => {
       const nextTracks = prev.tracks.filter((_, i) => i !== index);
@@ -387,25 +414,52 @@ export const DrumKitManagerModal: React.FC<DrumKitManagerModalProps> = ({
                     </div>
                   ) : (
                     <div className="space-y-2">
-                      {userKits.map((kit) => (
+                      {userKits.map((kit, uIndex) => (
                         <div
                           key={kit.id}
                           onClick={() => setSelectedKitId(kit.id)}
-                          className={`p-3 rounded-xl border text-left cursor-pointer transition-all ${
+                          className={`p-3 rounded-xl border text-left cursor-pointer transition-all flex items-center justify-between gap-2 ${
                             selectedKitId === kit.id
                               ? 'bg-amber-500/15 border-amber-400 text-white shadow-md'
                               : 'bg-slate-900/60 border-slate-800 text-slate-300 hover:border-slate-700'
                           }`}
                         >
-                          <div className="flex items-center justify-between gap-1">
-                            <span className="font-bold text-sm block truncate">{kit.name}</span>
-                            <span className="text-[10px] text-amber-400 bg-amber-950 px-1.5 py-0.5 rounded font-mono">
-                              {kit.tracks.length} sons
-                            </span>
+                          <div className="min-w-0 flex-1">
+                            <div className="flex items-center justify-between gap-1">
+                              <span className="font-bold text-sm block truncate">{kit.name}</span>
+                              <span className="text-[10px] text-amber-400 bg-amber-950 px-1.5 py-0.5 rounded font-mono">
+                                {kit.tracks.length} sons
+                              </span>
+                            </div>
+                            <p className="text-[11px] text-slate-400 mt-0.5 line-clamp-1">
+                              {kit.description || 'Kit personalizado'}
+                            </p>
                           </div>
-                          <p className="text-[11px] text-slate-400 mt-0.5 line-clamp-1">
-                            {kit.description || 'Kit personalizado'}
-                          </p>
+
+                          {/* Up / Down reorder for kits */}
+                          <div
+                            className="flex flex-col gap-0.5 shrink-0"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <button
+                              type="button"
+                              title="Mover kit para cima"
+                              disabled={uIndex === 0}
+                              onClick={() => handleMoveKit(kit.id, 'up')}
+                              className="p-1 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-20 disabled:cursor-not-allowed text-slate-300 hover:text-amber-400 transition-colors"
+                            >
+                              <ArrowUp className="w-3 h-3" />
+                            </button>
+                            <button
+                              type="button"
+                              title="Mover kit para baixo"
+                              disabled={uIndex === userKits.length - 1}
+                              onClick={() => handleMoveKit(kit.id, 'down')}
+                              className="p-1 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-20 disabled:cursor-not-allowed text-slate-300 hover:text-amber-400 transition-colors"
+                            >
+                              <ArrowDown className="w-3 h-3" />
+                            </button>
+                          </div>
                         </div>
                       ))}
                     </div>
@@ -635,8 +689,28 @@ export const DrumKitManagerModal: React.FC<DrumKitManagerModalProps> = ({
                       key={track.id || idx}
                       className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-3"
                     >
-                      {/* Name & Color */}
-                      <div className="flex items-center gap-2.5 min-w-[200px]">
+                      {/* Reorder Up / Down + Name & Color */}
+                      <div className="flex items-center gap-2.5 min-w-[220px]">
+                        <div className="flex flex-col gap-0.5 shrink-0">
+                          <button
+                            type="button"
+                            title="Mover peça para cima"
+                            disabled={idx === 0}
+                            onClick={() => handleMoveDraftTrack(idx, 'up')}
+                            className="p-1 rounded bg-slate-900 hover:bg-slate-850 disabled:opacity-20 disabled:cursor-not-allowed text-slate-300 hover:text-amber-400 border border-slate-800"
+                          >
+                            <ArrowUp className="w-3 h-3" />
+                          </button>
+                          <button
+                            type="button"
+                            title="Mover peça para baixo"
+                            disabled={idx === draftKit.tracks.length - 1}
+                            onClick={() => handleMoveDraftTrack(idx, 'down')}
+                            className="p-1 rounded bg-slate-900 hover:bg-slate-850 disabled:opacity-20 disabled:cursor-not-allowed text-slate-300 hover:text-amber-400 border border-slate-800"
+                          >
+                            <ArrowDown className="w-3 h-3" />
+                          </button>
+                        </div>
                         <input
                           type="color"
                           value={track.color || '#f59e0b'}

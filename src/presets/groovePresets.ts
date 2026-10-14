@@ -47,7 +47,7 @@ export function createStepPattern(
 // 1. Brazilian Samba Batucada & Percussion
 export const sambaPreset: SongProject = {
   id: 'preset_samba',
-  name: 'Samba Batucada Brasileira (4/4)',
+  name: 'Samba Batucada Brasileira',
   genre: 'Samba / MPB / Batucada',
   bpm: 104,
   timeSignature: '4/4',
@@ -1187,6 +1187,10 @@ export const polyrhythmPreset: SongProject = {
 
 export const availablePresets: SongProject[] = [
   userCreatedSambaProject,
+  sambaPreset,
+  afroCubanPreset,
+  rockDrivePreset,
+  polyrhythmPreset,
 ];
 
 export type StarterKitType = 'empty' | 'brazilian' | 'latin' | 'rock' | 'percussion';

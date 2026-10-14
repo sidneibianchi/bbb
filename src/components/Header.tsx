@@ -19,6 +19,7 @@ interface HeaderProps {
   isPedalEnabled?: boolean;
   onTogglePedalEnabled?: () => void;
   onOpenDrumKitModal?: () => void;
+  onEnterMobileLiveView?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -26,6 +27,7 @@ export const Header: React.FC<HeaderProps> = ({
   onSelectView,
   onOpenCreateModal,
   onOpenDrumKitModal,
+  onEnterMobileLiveView,
   onOpenFootswitchModal,
   onOpenMobileGuide,
   onOpenShareMobile,
@@ -64,7 +66,7 @@ export const Header: React.FC<HeaderProps> = ({
           }}
           className="text-lg font-bold tracking-tight text-white whitespace-nowrap shrink-0 hover:text-amber-400 transition-colors"
         >
-          BeatBuddy Studio
+          SB Beats Studio
         </a>
 
         {/* Cloud Sync indicator */}
@@ -260,6 +262,18 @@ export const Header: React.FC<HeaderProps> = ({
             <Cloud className="w-3.5 h-3.5" />
           </button>
         )}
+        {onEnterMobileLiveView && (
+          <button
+            type="button"
+            title="Alternar para a visualização simplificada de pedal para celular"
+            onClick={onEnterMobileLiveView}
+            className="flex items-center gap-1.5 px-3 py-2 text-xs font-bold text-cyan-300 hover:text-slate-950 bg-cyan-950/40 hover:bg-cyan-400 border border-cyan-500/40 rounded-lg transition-all cursor-pointer shadow-sm"
+          >
+            <Smartphone className="w-3.5 h-3.5 text-cyan-400 group-hover:text-slate-950" />
+            <span className="hidden sm:inline">Modo Celular (Live)</span>
+            <span className="sm:hidden">Live</span>
+          </button>
+        )}
         {onOpenShareMobile && (
           <button
             type="button"
@@ -268,7 +282,7 @@ export const Header: React.FC<HeaderProps> = ({
             className="flex items-center gap-1.5 px-3 py-2 text-xs font-bold text-amber-300 hover:text-slate-950 bg-amber-400/10 hover:bg-amber-400 border border-amber-400/40 rounded-lg transition-all cursor-pointer shadow-sm"
           >
             <Smartphone className="w-3.5 h-3.5 text-amber-400 group-hover:text-slate-950" />
-            <span>Abrir no Celular</span>
+            <span>QR Celular</span>
           </button>
         )}
         {onTogglePedalEnabled && (

@@ -19,6 +19,8 @@ import {
   RefreshCw,
   FolderDown,
   FolderUp,
+  ArrowUp,
+  ArrowDown,
 } from 'lucide-react';
 import { audioEngine } from '../audio/AudioEngine';
 import {
@@ -64,6 +66,17 @@ export const SamplesLibraryView: React.FC<SamplesLibraryViewProps> = ({
 
   const refreshList = () => {
     setSamplesList(audioEngine.getCustomSamplesList());
+  };
+
+  const handleMoveSample = (index: number, direction: 'up' | 'down') => {
+    const targetIndex = direction === 'up' ? index - 1 : index + 1;
+    if (targetIndex < 0 || targetIndex >= samplesList.length) return;
+    const nextList = [...samplesList];
+    const [moved] = nextList.splice(index, 1);
+    nextList.splice(targetIndex, 0, moved);
+    setSamplesList(nextList);
+    audioEngine.reorderCustomSamples(nextList.map((s) => s.id));
+    setStatusMessage(`Ordem do sample "${moved.name}" atualizada.`);
   };
 
   const handleFileUpload = async (files: FileList | File[]) => {
@@ -347,12 +360,34 @@ export const SamplesLibraryView: React.FC<SamplesLibraryViewProps> = ({
           </div>
         ) : (
           <div className="divide-y divide-slate-800/80">
-            {samplesList.map((sample) => (
+            {samplesList.map((sample, index) => (
               <div
                 key={sample.id}
-                className="px-6 py-3.5 flex items-center justify-between gap-4 hover:bg-slate-900/50 transition-colors"
+                className="px-6 py-3 flex items-center justify-between gap-4 hover:bg-slate-900/50 transition-colors"
               >
                 <div className="flex items-center gap-3 min-w-0">
+                  {/* Reorder Up / Down */}
+                  <div className="flex flex-col gap-0.5 shrink-0">
+                    <button
+                      type="button"
+                      title="Mover sample para cima"
+                      disabled={index === 0}
+                      onClick={() => handleMoveSample(index, 'up')}
+                      className="p-1 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-20 disabled:hover:bg-slate-850 disabled:cursor-not-allowed text-slate-300 hover:text-amber-400 transition-colors cursor-pointer"
+                    >
+                      <ArrowUp className="w-3 h-3" />
+                    </button>
+                    <button
+                      type="button"
+                      title="Mover sample para baixo"
+                      disabled={index === samplesList.length - 1}
+                      onClick={() => handleMoveSample(index, 'down')}
+                      className="p-1 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-20 disabled:hover:bg-slate-850 disabled:cursor-not-allowed text-slate-300 hover:text-amber-400 transition-colors cursor-pointer"
+                    >
+                      <ArrowDown className="w-3 h-3" />
+                    </button>
+                  </div>
+
                   <button
                     type="button"
                     title="Tocar sample"

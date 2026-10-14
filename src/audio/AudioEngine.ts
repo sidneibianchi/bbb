@@ -39,6 +39,7 @@ export interface SchedulerCallback {
   onPlaybackStateChange: (isPlaying: boolean) => void;
   onPartAutoAdvance?: (partId: SongPartId) => void;
   onSamplesUpdated?: (samples: Array<{ id: string; name: string }>) => void;
+  onRhythmChanged?: (project: SongProject, bpm: number) => void;
 }
 
 export class AudioEngine {
@@ -81,6 +82,8 @@ export class AudioEngine {
   // Active Project Reference
   private currentProject: SongProject | null = null;
   private callbacks: SchedulerCallback | null = null;
+  private queuedNextProject: SongProject | null = null;
+  private queuedPreserveBpm: number | null = null;
 
   constructor() {
     // Lazily init AudioContext upon user interaction
@@ -133,6 +136,39 @@ export class AudioEngine {
     this.bpm = project.bpm;
     this.swing = project.swing;
     this.humanize = project.humanize;
+  }
+
+  /**
+   * Switches to a new rhythm.
+   * If playing: finishes the current measure/bar in time without stopping,
+   * keeping the current active BPM, and smoothly enters Parte A on beat 1.
+   * If stopped: immediately updates the current project and keeps or resets BPM.
+   */
+  public switchRhythm(nextProject: SongProject, preserveBpm: boolean = true) {
+    if (!this.isPlaying) {
+      this.currentProject = nextProject;
+      if (!preserveBpm) {
+        this.bpm = nextProject.bpm;
+      }
+      this.currentPartId = 'verse';
+      this.basePartId = 'verse';
+      this.selectedStartPartId = 'verse';
+      this.callbacks?.onRhythmChanged?.(this.currentProject, this.bpm);
+      return;
+    }
+
+    // While playing: queue transition for the exact end of the current bar
+    this.queuedNextProject = nextProject;
+    this.queuedPreserveBpm = preserveBpm ? this.bpm : this.bpm;
+  }
+
+  public getQueuedProject(): SongProject | null {
+    return this.queuedNextProject;
+  }
+
+  public cancelQueuedRhythm() {
+    this.queuedNextProject = null;
+    this.queuedPreserveBpm = null;
   }
 
   public setBpm(bpm: number) {
@@ -519,7 +555,32 @@ export class AudioEngine {
         list.push({ id, name: val.name });
       }
     });
+
+    try {
+      const savedOrder = localStorage.getItem('beatbuddy_sample_order');
+      if (savedOrder) {
+        const orderIds: string[] = JSON.parse(savedOrder);
+        list.sort((a, b) => {
+          const idxA = orderIds.indexOf(a.id);
+          const idxB = orderIds.indexOf(b.id);
+          if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+          if (idxA !== -1) return -1;
+          if (idxB !== -1) return 1;
+          return 0;
+        });
+      }
+    } catch {}
+
     return list;
+  }
+
+  public reorderCustomSamples(orderedIds: string[]): Array<{ id: string; name: string }> {
+    try {
+      localStorage.setItem('beatbuddy_sample_order', JSON.stringify(orderedIds));
+    } catch {}
+    const updated = this.getCustomSamplesList();
+    this.callbacks?.onSamplesUpdated?.(updated);
+    return updated;
   }
 
   public getSubdivisionsPerBeat(): number {
@@ -1008,6 +1069,39 @@ export class AudioEngine {
     }
     this.nextStepTime += Math.max(0.005, stepDelta);
     this.globalTick++;
+
+    // In-Time Rhythm Switching at exact bar boundary:
+    const stepsPerBar = this.getStepsPerBar();
+    if (this.queuedNextProject && this.globalTick % stepsPerBar === 0) {
+      const nextProj = this.queuedNextProject;
+      const preservedBpm = this.queuedPreserveBpm ?? this.bpm;
+      this.queuedNextProject = null;
+      this.queuedPreserveBpm = null;
+
+      // Seamlessly swap to the new rhythm without interrupting playback
+      this.currentProject = nextProj;
+      this.bpm = preservedBpm;
+      this.swing = nextProj.swing ?? this.swing;
+      this.humanize = nextProj.humanize ?? this.humanize;
+
+      // Always enter Parte A ('verse') on beat 1 of the new rhythm
+      this.currentPartId = 'verse';
+      this.basePartId = 'verse';
+      this.selectedStartPart = 'verse';
+      this.isIntroPlaying = false;
+      this.introEndTick = null;
+      this.isOutroPlaying = false;
+      this.outroEndTick = null;
+      this.activeFillId = null;
+      this.fillEndTick = null;
+      this.isTransitioning = false;
+      this.activeTransitionId = null;
+      this.transitionEndTick = null;
+      this.targetPartId = null;
+
+      this.notifyPedalState();
+      this.callbacks?.onRhythmChanged?.(this.currentProject, this.bpm);
+    }
 
     // Fill completion
     if (this.activeFillId && this.fillEndTick !== null && this.globalTick >= this.fillEndTick) {
