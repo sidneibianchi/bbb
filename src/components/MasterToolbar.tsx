@@ -175,7 +175,6 @@ export const MasterToolbar: React.FC<MasterToolbarProps> = ({
               onChange={(e) => onTimeSignatureChange(e.target.value as TimeSignature)}
               className="bg-slate-950 text-slate-200 font-mono font-semibold rounded px-1.5 py-0.5 border border-slate-800 focus:outline-none focus:border-amber-400 cursor-pointer"
             >
-              <option value="2/4">2/4 (Samba / Choro - Tradicional)</option>
               <option value="4/4">4/4 (Padrão 4 tempos)</option>
               <option value="3/4">3/4 (Valsa / Guarânia)</option>
               <option value="6/8">6/8 (Afro / Baião / Ijexá)</option>

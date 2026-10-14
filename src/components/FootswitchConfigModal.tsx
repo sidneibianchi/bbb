@@ -279,7 +279,7 @@ export const FootswitchConfigModal: React.FC<FootswitchConfigModalProps> = ({
               </span>
             </div>
             <p className="text-slate-400 text-[11px]">
-              Define quantos milissegundos você precisa manter o pé pisado no Pedal 1 para chamar a finalização (Ending). Toques rápidos sempre disparam virada (Fill).
+              Dica: Agora você pode <strong className="text-amber-400">pisar duas vezes rápidas no Pedal 1</strong> para chamar o Ending instantaneamente, ou segurar o pé pisado pelo tempo configurado abaixo.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1">
               {[

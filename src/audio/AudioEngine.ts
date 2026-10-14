@@ -547,7 +547,6 @@ export class AudioEngine {
   public getStepsPerBar(): number {
     const subPerBeat = this.getSubdivisionsPerBeat();
     const timeSig = this.currentProject?.timeSignature || '4/4';
-    if (timeSig === '2/4') return 2 * subPerBeat; // Traditional Samba / Choro / Marcha (2 beats per bar)
     if (timeSig === '3/4') return 3 * subPerBeat;
     if (timeSig === '6/8') return Math.max(6, Math.round(6 * (subPerBeat / 2)));
     if (timeSig === '7/8') return Math.max(7, Math.round(7 * (subPerBeat / 2)));

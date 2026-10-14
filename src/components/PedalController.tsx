@@ -608,7 +608,7 @@ export const PedalController: React.FC<PedalControllerProps> = ({
 
             <span className="text-xs text-amber-300 font-semibold mt-1 text-center">
               {isPlaying
-                ? 'Segurar: Finalizar Música (Ending)'
+                ? '⚡ 2 Toques Rápidos (ou Segurar): Ending'
                 : 'Toca Intro e avança para Parte A'}
             </span>
 
@@ -703,7 +703,7 @@ export const PedalController: React.FC<PedalControllerProps> = ({
           <div className="space-y-0.5 text-[11px]">
             <div><span className="text-white font-semibold">Parado:</span> 1 Toque toca a <strong className="text-emerald-400">Intro</strong></div>
             <div><span className="text-white font-semibold">Tocando:</span> 1 Toque toca <strong className="text-amber-400">Fill A</strong> (na Parte A) ou <strong className="text-amber-400">Fill B</strong> (na Parte B)</div>
-            <div><span className="text-white font-semibold">Tocando:</span> Segurar aciona a <strong className="text-rose-400">Finalização (End)</strong></div>
+            <div><span className="text-white font-semibold">Tocando:</span> <strong className="text-rose-400">2 Toques Rápidos</strong> (ou Segurar) aciona a <strong className="text-rose-400">Finalização (Ending)</strong></div>
           </div>
         </div>
 

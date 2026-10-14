@@ -110,9 +110,7 @@ export const BeatBuddyDisplay: React.FC<BeatBuddyDisplayProps> = ({
 
   // Calculate beats based on time signature
   const beatsPerBar =
-    timeSignature === '2/4'
-      ? 2
-      : timeSignature === '3/4'
+    timeSignature === '3/4'
       ? 3
       : timeSignature === '6/8'
       ? 6

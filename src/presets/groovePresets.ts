@@ -47,10 +47,10 @@ export function createStepPattern(
 // 1. Brazilian Samba Batucada & Percussion
 export const sambaPreset: SongProject = {
   id: 'preset_samba',
-  name: 'Samba Batucada Brasileira (2/4)',
+  name: 'Samba Batucada Brasileira (4/4)',
   genre: 'Samba / MPB / Batucada',
   bpm: 104,
-  timeSignature: '2/4',
+  timeSignature: '4/4',
   resolution: '1/32',
   barsCount: 1,
   swing: 12,
@@ -1503,9 +1503,7 @@ export function createNewCustomRhythm(params: {
   const tracks = getStarterKitTracks(params.starterKit);
   const subPerBeat = (params.resolution || '1/32') === '1/32' ? 8 : 4;
   const defaultStepCount =
-    params.timeSignature === '2/4'
-      ? 2 * subPerBeat
-      : params.timeSignature === '7/8'
+    params.timeSignature === '7/8'
       ? 14
       : params.timeSignature === '6/8'
       ? 12

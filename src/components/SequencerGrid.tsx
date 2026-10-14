@@ -75,9 +75,7 @@ export const SequencerGrid: React.FC<SequencerGridProps> = ({
   // Fusa por padrão (8 subdivisões por tempo / 1/32)
   const subPerBeat = 8;
   const beatsPerBar =
-    timeSignature === '2/4'
-      ? 2
-      : timeSignature === '3/4'
+    timeSignature === '3/4'
       ? 3
       : timeSignature === '5/4'
       ? 5
@@ -90,9 +88,7 @@ export const SequencerGrid: React.FC<SequencerGridProps> = ({
       : 4;
 
   const stepsPerBar =
-    timeSignature === '2/4'
-      ? 2 * subPerBeat // 16 notas por compasso em 2/4
-      : timeSignature === '3/4'
+    timeSignature === '3/4'
       ? 3 * subPerBeat
       : timeSignature === '6/8'
       ? Math.max(6, Math.round(6 * (subPerBeat / 2)))

@@ -130,8 +130,8 @@ export const CreateRhythmModal: React.FC<CreateRhythmModalProps> = ({
             <label className="block text-slate-300 font-semibold mb-1.5">
               Fórmula de Compasso:
             </label>
-            <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
-              {(['2/4', '4/4', '3/4', '6/8', '7/8', '5/4', '12/8'] as TimeSignature[]).map((sig) => (
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+              {(['4/4', '3/4', '6/8', '7/8', '5/4', '12/8'] as TimeSignature[]).map((sig) => (
                 <button
                   key={sig}
                   type="button"

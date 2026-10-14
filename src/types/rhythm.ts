@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export type TimeSignature = '2/4' | '4/4' | '3/4' | '6/8' | '7/8' | '5/4' | '12/8';
+export type TimeSignature = '4/4' | '3/4' | '6/8' | '7/8' | '5/4' | '12/8';
 
 export type SongPartId =
   | 'intro' // Intro

@@ -461,6 +461,7 @@ export default function App() {
   // --- GLOBAL FOOSWITCH & CUVAVE / M-VAVE KEYBOARD LISTENER ---
   // Operates continuously across ALL views (Sequencer, Pedal, Samples)
   useEffect(() => {
+    let pedal1SingleTapTimer: number | null = null;
     let pedal1PhysicalDown = false;
     let pedal1DownTimestamp = 0;
     let pedal1HoldTriggered = false;
@@ -475,13 +476,29 @@ export default function App() {
 
     // PEDAL 1 (Principal):
     // IN STOP: TAP -> Inicia Intro e avança para Parte A (com trava de partida)
-    // IN PLAY: TAP (< holdThreshold) -> Virada (Fill A se em Parte A, Fill B se em Parte B)
-    // IN PLAY: HOLD (>= holdThreshold) -> Finalização (Ending / Outro)
+    // IN PLAY: 1 TAP -> Virada (Fill A se em Parte A, Fill B se em Parte B)
+    // IN PLAY: 2 TAPS RÁPIDOS (DOUBLE TAP) -> Finalização (Ending / Outro)
+    // IN PLAY: SEGURAR (HOLD >= threshold) -> Finalização (Ending / Outro)
     const handlePedal1Down = (isRepeat = false) => {
       // Unmute audio immediately if locked on mobile
       if (!isAudioUnlocked) {
         audioEngine.unlockAudioContext();
         setIsAudioUnlocked(true);
+      }
+
+      // DOUBLE-TAP CHECK ON DOWN:
+      // If a single tap was registered recently and we receive a second tap while playing:
+      if (pedal1SingleTapTimer !== null && stateRef.current.isPlaying && !stateRef.current.isOutro) {
+        clearTimeout(pedal1SingleTapTimer);
+        pedal1SingleTapTimer = null;
+        if (pressTimer) {
+          clearTimeout(pressTimer);
+          pressTimer = null;
+        }
+        pedal1HoldTriggered = true; // Consumes the release so up handler does nothing
+        audioEngine.handlePedal1HoldStart();
+        triggerPedalToast('🦶 Pedal 1 (2 Toques Rápidos): Finalizando Música (Ending)!');
+        return;
       }
 
       // If already physically pressed down (e.g. OS key repeat while holding foot on pedal):
@@ -499,6 +516,10 @@ export default function App() {
             clearTimeout(pressTimer);
             pressTimer = null;
           }
+          if (pedal1SingleTapTimer) {
+            clearTimeout(pedal1SingleTapTimer);
+            pedal1SingleTapTimer = null;
+          }
           audioEngine.handlePedal1HoldStart();
           triggerPedalToast('🦶 Pedal 1 Segurado: Finalizando Música (Ending)');
         }
@@ -514,6 +535,10 @@ export default function App() {
 
       // IN STOP: Start playback immediately
       if (!stateRef.current.isPlaying) {
+        if (pedal1SingleTapTimer) {
+          clearTimeout(pedal1SingleTapTimer);
+          pedal1SingleTapTimer = null;
+        }
         pedal1StartedPlayback = true;
         pedal1StartPlaybackTimestamp = Date.now();
         audioEngine.handlePedal1Tap();
@@ -534,6 +559,10 @@ export default function App() {
           !stateRef.current.isOutro
         ) {
           pedal1HoldTriggered = true;
+          if (pedal1SingleTapTimer) {
+            clearTimeout(pedal1SingleTapTimer);
+            pedal1SingleTapTimer = null;
+          }
           audioEngine.handlePedal1HoldStart();
           triggerPedalToast('🦶 Pedal 1 Segurado: Finalizando Música (Ending)');
         }
@@ -548,7 +577,7 @@ export default function App() {
         pressTimer = null;
       }
 
-      // 1. If this press already triggered Ending by holding, consume release completely!
+      // 1. If this press already triggered Ending by holding or double-tap down, consume release completely!
       if (pedal1HoldTriggered) {
         pedal1HoldTriggered = false;
         lastPedal1ReleaseTimestamp = Date.now();
@@ -579,15 +608,35 @@ export default function App() {
       // 5. Authentic intentional TAP while playing!
       if (stateRef.current.isPlaying && !stateRef.current.isOutro) {
         if (stateRef.current.isIntro) {
+          if (pedal1SingleTapTimer) {
+            clearTimeout(pedal1SingleTapTimer);
+            pedal1SingleTapTimer = null;
+          }
           // If tapped deliberately during intro, advance to Part A
           audioEngine.handlePedal1Tap();
           triggerPedalToast('🦶 Pedal 1: Pular Intro ➔ Parte A');
-        } else {
-          // Trigger Fill for current part (Fill A if on Part A, Fill B if on Part B)
-          audioEngine.handlePedal1Tap();
-          const targetFill = stateRef.current.basePartId === 'part_b' ? 'Fill B' : 'Fill A';
-          triggerPedalToast(`🦶 Pedal 1: Virada (${targetFill}) Disparada!`);
+          return;
         }
+
+        // DOUBLE-TAP CHECK ON UP:
+        // If a single-tap was waiting, this second release completes the double tap!
+        if (pedal1SingleTapTimer !== null) {
+          clearTimeout(pedal1SingleTapTimer);
+          pedal1SingleTapTimer = null;
+          audioEngine.handlePedal1HoldStart();
+          triggerPedalToast('🦶 Pedal 1 (2 Toques Rápidos): Finalizando Música (Ending)!');
+          return;
+        }
+
+        // Schedule single-tap action (Virada / Fill) with a 320ms window for double-tap detection
+        pedal1SingleTapTimer = window.setTimeout(() => {
+          pedal1SingleTapTimer = null;
+          if (stateRef.current.isPlaying && !stateRef.current.isOutro && !stateRef.current.isIntro) {
+            audioEngine.handlePedal1Tap();
+            const targetFill = stateRef.current.basePartId === 'part_b' ? 'Fill B' : 'Fill A';
+            triggerPedalToast(`🦶 Pedal 1: Virada (${targetFill}) Disparada!`);
+          }
+        }, 320);
       }
     };
 
@@ -828,6 +877,8 @@ export default function App() {
     window.addEventListener('keyup', handleKeyUp, { capture: true, passive: false });
 
     return () => {
+      if (pressTimer) clearTimeout(pressTimer);
+      if (pedal1SingleTapTimer) clearTimeout(pedal1SingleTapTimer);
       window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchend', handleTouchEnd);
       window.removeEventListener('scroll', handleNativePageScroll);
