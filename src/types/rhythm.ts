@@ -9,6 +9,7 @@ export type SongPartId =
   | 'intro' // Intro
   | 'verse' // Parte A
   | 'part_b' // Parte B
+  | 'part_c' // Parte C
   | 'prechorus' // Pré-refrão
   | 'chorus' // Refrão
   | 'bridge' // Ponte
@@ -17,12 +18,14 @@ export type SongPartId =
   | 'fill3' // Fill 3
   | 'fill_a' // Fill A
   | 'fill_b' // Fill B
+  | 'fill_c' // Fill C
   | 'transition' // Transição genérica
   | 'transition_a_b' // Transição A -> B
   | 'transition_b_a' // Transição B -> A
   | 'transition_b_c' // Transição B -> C
   | 'transition_c_b' // Transição C -> B
   | 'transition_c_a' // Transição C -> A
+  | 'transition_a_c' // Transição A -> C
   | 'outro' // End
   | (string & {});
 

@@ -642,7 +642,9 @@ export class AudioEngine {
     }
     // Trigger dynamic fill strictly matching the current base part
     if (!this.activeFillId && !this.isTransitioning && !this.isOutroPlaying) {
-      if (this.basePartId === 'part_b') {
+      if (this.basePartId === 'part_c') {
+        this.triggerFill('fill_c');
+      } else if (this.basePartId === 'part_b') {
         this.triggerFill('fill_b');
       } else {
         this.triggerFill('fill_a');
@@ -671,12 +673,21 @@ export class AudioEngine {
   }
 
   // PEDAL 2:
-  // IN STOP: TAP -> Alterna PARTE A / PARTE B
-  // IN PLAY: TAP -> TRANSIÇÃO A -> B / TRANSIÇÃO B -> A
-  public handlePedal2Tap() {
+  // IN STOP: TAP -> Alterna PARTE A / PARTE B / PARTE C
+  // IN PLAY:
+  // - Em Parte A: 1 toque -> Transição A -> B
+  // - Em Parte B: 1 toque -> Transição B -> C | 2 toques -> Transição B -> A
+  // - Em Parte C: 1 toque -> Transição C -> A | 2 toques -> Transição C -> B
+  public handlePedal2Tap(isDoubleTap: boolean = false) {
     if (!this.isPlaying) {
-      // Toggle selected start part between Parte A and Parte B
-      this.selectedStartPart = this.selectedStartPart === 'verse' ? 'part_b' : 'verse';
+      // Toggle selected start part between Parte A -> Parte B -> Parte C -> Parte A
+      if (this.selectedStartPart === 'verse') {
+        this.selectedStartPart = 'part_b';
+      } else if (this.selectedStartPart === 'part_b') {
+        this.selectedStartPart = 'part_c';
+      } else {
+        this.selectedStartPart = 'verse';
+      }
       this.basePartId = this.selectedStartPart;
       this.currentPartId = this.selectedStartPart;
       this.notifyPedalState();
@@ -684,13 +695,26 @@ export class AudioEngine {
       return;
     }
 
-    // In Play: Transition from A -> B or B -> A
+    // In Play:
     if (!this.isTransitioning && !this.isOutroPlaying) {
       if (this.basePartId === 'part_b') {
-        // Transition B -> A
-        this.triggerTransition('transition_b_a', 'verse');
+        if (isDoubleTap) {
+          // 2 toques rápidos: Volta para a Parte A
+          this.triggerTransition('transition_b_a', 'verse');
+        } else {
+          // 1 toque: Segue para a Parte C
+          this.triggerTransition('transition_b_c', 'part_c');
+        }
+      } else if (this.basePartId === 'part_c') {
+        if (isDoubleTap) {
+          // 2 toques rápidos: Volta para a Parte B
+          this.triggerTransition('transition_c_b', 'part_b');
+        } else {
+          // 1 toque: Segue para a Parte A
+          this.triggerTransition('transition_c_a', 'verse');
+        }
       } else {
-        // Transition A -> B
+        // Em Parte A ('verse'): 1 toque segue para a Parte B
         this.triggerTransition('transition_a_b', 'part_b');
       }
     }
@@ -749,7 +773,7 @@ export class AudioEngine {
 
   public selectPart(partId: SongPartId) {
     this.currentPartId = partId;
-    if (partId === 'verse' || partId === 'part_b') {
+    if (partId === 'verse' || partId === 'part_b' || partId === 'part_c') {
       this.basePartId = partId;
       this.selectedStartPart = partId;
     }
@@ -800,8 +824,14 @@ export class AudioEngine {
     if (parts[partId]) return parts[partId] as SongProject['parts'][SongPartId];
 
     // Aliases
+    if (partId === 'part_c') {
+      return (parts['part_c'] || parts['part_b'] || parts['verse']) as SongProject['parts'][SongPartId];
+    }
     if (partId === 'part_b') {
       return (parts['part_b'] || parts['chorus'] || parts['prechorus']) as SongProject['parts'][SongPartId];
+    }
+    if (partId === 'fill_c') {
+      return (parts['fill_c'] || parts['fill_b'] || parts['fill_a']) as SongProject['parts'][SongPartId];
     }
     if (partId === 'fill_a') {
       return (parts['fill_a'] || parts['fill1']) as SongProject['parts'][SongPartId];
@@ -813,7 +843,19 @@ export class AudioEngine {
       return (parts['transition_a_b'] || parts['transition']) as SongProject['parts'][SongPartId];
     }
     if (partId === 'transition_b_a') {
-      return parts['transition_b_a'] as SongProject['parts'][SongPartId];
+      return (parts['transition_b_a'] || parts['transition']) as SongProject['parts'][SongPartId];
+    }
+    if (partId === 'transition_b_c') {
+      return (parts['transition_b_c'] || parts['transition_a_b']) as SongProject['parts'][SongPartId];
+    }
+    if (partId === 'transition_c_b') {
+      return (parts['transition_c_b'] || parts['transition_b_a']) as SongProject['parts'][SongPartId];
+    }
+    if (partId === 'transition_c_a') {
+      return (parts['transition_c_a'] || parts['transition_b_a']) as SongProject['parts'][SongPartId];
+    }
+    if (partId === 'transition_a_c') {
+      return (parts['transition_a_c'] || parts['transition_a_b']) as SongProject['parts'][SongPartId];
     }
     if (partId === 'verse') {
       return (parts['verse'] || parts['part_a']) as SongProject['parts'][SongPartId];

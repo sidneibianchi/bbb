@@ -4,9 +4,11 @@
  */
 
 import React, { useState } from 'react';
-import { X, Sparkles } from 'lucide-react';
+import { X, Sparkles, Disc3 } from 'lucide-react';
 import { StarterKitType } from '../presets/groovePresets';
-import { TimeSignature, RhythmicResolution } from '../types/rhythm';
+import { TimeSignature, RhythmicResolution, TrackDefinition } from '../types/rhythm';
+import { getUserDrumKits } from '../services/kitStorage';
+import { DrumKitDefinition } from '../types/kit';
 
 interface CreateRhythmModalProps {
   onClose: () => void;
@@ -18,28 +20,38 @@ interface CreateRhythmModalProps {
     starterKit: StarterKitType;
     resolution?: RhythmicResolution;
     barsCount?: number;
+    customKitTracks?: TrackDefinition[];
   }) => void;
+  isPedalEnabled?: boolean;
+  onTogglePedalEnabled?: () => void;
 }
 
 export const CreateRhythmModal: React.FC<CreateRhythmModalProps> = ({
   onClose,
   onCreate,
+  isPedalEnabled = true,
+  onTogglePedalEnabled,
 }) => {
   const [name, setName] = useState('Meu Novo Ritmo');
   const [genre, setGenre] = useState('Personalizado');
   const [bpm, setBpm] = useState(115);
   const [timeSignature, setTimeSignature] = useState<TimeSignature>('4/4');
-  const [starterKit, setStarterKit] = useState<StarterKitType>('brazilian');
+  const [starterKit, setStarterKit] = useState<string>('brazilian');
+  const [userKits] = useState<DrumKitDefinition[]>(() => getUserDrumKits());
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim()) return;
+
+    const matchedCustomKit = userKits.find((k) => k.id === starterKit);
+
     onCreate({
       name: name.trim(),
       genre,
       bpm,
       timeSignature,
-      starterKit,
+      starterKit: matchedCustomKit ? 'empty' : (starterKit as StarterKitType),
+      customKitTracks: matchedCustomKit ? matchedCustomKit.tracks : undefined,
       resolution: '1/32',
       barsCount: 1,
     });
@@ -73,7 +85,30 @@ export const CreateRhythmModal: React.FC<CreateRhythmModalProps> = ({
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-4 text-xs">
+        {/* Informative helper for text input */}
+        <div className="mx-6 mt-4 p-2.5 rounded-lg bg-emerald-950/30 border border-emerald-500/30 flex items-center justify-between gap-2 text-[11px] text-emerald-300">
+          <div className="flex items-center gap-2">
+            <span className="text-sm">⌨️</span>
+            <span>
+              <strong>Digitação Liberada:</strong> As teclas <strong>A</strong>, <strong>D</strong>, espaço e números funcionam normalmente para digitar o nome.
+            </span>
+          </div>
+          {onTogglePedalEnabled && (
+            <button
+              type="button"
+              onClick={onTogglePedalEnabled}
+              className={`shrink-0 px-2 py-0.5 text-[10px] font-bold rounded border transition-colors cursor-pointer ${
+                isPedalEnabled
+                  ? 'bg-slate-900 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800'
+                  : 'bg-rose-900/60 border-rose-500/60 text-rose-200'
+              }`}
+            >
+              {isPedalEnabled ? 'Desativar Pedal' : 'Pedal Desativado ✓'}
+            </button>
+          )}
+        </div>
+
+        <form onSubmit={handleSubmit} className="p-6 pt-3 space-y-4 text-xs">
           {/* Nome do Ritmo */}
           <div>
             <label className="block text-slate-300 font-semibold mb-1.5">
@@ -157,14 +192,50 @@ export const CreateRhythmModal: React.FC<CreateRhythmModalProps> = ({
           {/* Kit Inicial */}
           <div>
             <label className="block text-slate-300 font-semibold mb-1.5">
-              Kit Inicial de Percussão
+              Kit Inicial de Percussão / Bateria
             </label>
-            <div className="space-y-2">
+            <div className="space-y-2 max-h-56 overflow-y-auto pr-1">
+              {/* User Saved Kits */}
+              {userKits.length > 0 && (
+                <div className="text-[11px] font-bold uppercase tracking-wider text-amber-400 mt-1 mb-1">
+                  ⭐ Seus Kits Salvos na Memória
+                </div>
+              )}
+              {userKits.map((kit) => (
+                <label
+                  key={kit.id}
+                  className={`flex items-start gap-3 p-2.5 rounded-xl border cursor-pointer transition-colors ${
+                    starterKit === kit.id
+                      ? 'bg-amber-500/15 border-amber-400'
+                      : 'bg-slate-950/40 border-slate-800 hover:border-slate-700'
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="starterKit"
+                    value={kit.id}
+                    checked={starterKit === kit.id}
+                    onChange={() => setStarterKit(kit.id)}
+                    className="mt-0.5 accent-amber-400"
+                  />
+                  <div>
+                    <span className="font-bold text-amber-300 block">{kit.name}</span>
+                    <span className="text-[11px] text-slate-400">
+                      {kit.description || `${kit.tracks.length} instrumentos`}
+                    </span>
+                  </div>
+                </label>
+              ))}
+
+              {/* Factory Kits */}
+              <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mt-2 mb-1">
+                🥁 Kits Padrão de Estúdio
+              </div>
               {[
                 {
                   id: 'brazilian',
-                  label: 'Kit Percussão Brasileira',
-                  desc: 'Surdo, Pandeiro, Tamborim, Agogô Agudo e Ganzá',
+                  label: 'Kit Percussão Brasileira (WAV HD)',
+                  desc: 'Surdo Grave, Pandeiro Grave/Tapa, Tamborim e Ganzá',
                 },
                 {
                   id: 'latin',
@@ -200,7 +271,7 @@ export const CreateRhythmModal: React.FC<CreateRhythmModalProps> = ({
                     name="starterKit"
                     value={kit.id}
                     checked={starterKit === kit.id}
-                    onChange={() => setStarterKit(kit.id as StarterKitType)}
+                    onChange={() => setStarterKit(kit.id)}
                     className="mt-0.5 accent-amber-400"
                   />
                   <div>

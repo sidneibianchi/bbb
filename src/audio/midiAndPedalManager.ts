@@ -136,6 +136,15 @@ export class FootswitchManager {
 
   // Learning mode ('pedal1' | 'pedal2' | 'main' | 'accent')
   private learningTarget: 'pedal1' | 'pedal2' | 'main' | 'accent' | null = null;
+  private enabled: boolean = true;
+
+  public setEnabled(val: boolean) {
+    this.enabled = val;
+  }
+
+  public isEnabled(): boolean {
+    return this.enabled;
+  }
 
   constructor() {
     this.config = this.loadConfig();
@@ -253,6 +262,7 @@ export class FootswitchManager {
 
   private handleMidiMessage(event: MIDIMessageEvent) {
     if (!this.config.midiEnabled || !event.data) return;
+    if (!this.enabled && !this.learningTarget) return;
     const [status, data1, data2] = event.data;
     const command = status >> 4;
 

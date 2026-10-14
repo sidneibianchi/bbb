@@ -31,6 +31,8 @@ interface PedalControllerProps {
   onPedal2Tap: () => void;
   onStop: () => void;
   onOpenFootswitchConfig?: () => void;
+  isPedalEnabled?: boolean;
+  onTogglePedalEnabled?: () => void;
 }
 
 export const PedalController: React.FC<PedalControllerProps> = ({
@@ -55,6 +57,8 @@ export const PedalController: React.FC<PedalControllerProps> = ({
   onPedal2Tap,
   onStop,
   onOpenFootswitchConfig,
+  isPedalEnabled = true,
+  onTogglePedalEnabled,
 }) => {
   const [isPedal1Pressed, setIsPedal1Pressed] = useState(false);
   const [isPedal2Pressed, setIsPedal2Pressed] = useState(false);
@@ -273,6 +277,24 @@ export const PedalController: React.FC<PedalControllerProps> = ({
   const activeP2Pressed = isPedal2Pressed || isExternalPedal2Pressed;
   const isSignalFresh = Date.now() - recentPedalSignal.timestamp < 3500;
   const isPartB = isPlaying ? basePartId === 'part_b' : selectedStartPart === 'part_b';
+  const isPartC = isPlaying ? basePartId === 'part_c' : selectedStartPart === 'part_c';
+  const isPartA = !isPartB && !isPartC;
+
+  const getTransitionDisplayName = (transId?: SongPartId | null) => {
+    switch (transId) {
+      case 'transition_b_c':
+        return 'TRANSIÇÃO B ➔ C';
+      case 'transition_c_b':
+        return 'TRANSIÇÃO C ➔ B';
+      case 'transition_c_a':
+        return 'TRANSIÇÃO C ➔ A';
+      case 'transition_b_a':
+        return 'TRANSIÇÃO B ➔ A';
+      case 'transition_a_b':
+      default:
+        return 'TRANSIÇÃO A ➔ B';
+    }
+  };
 
   return (
     <div
@@ -306,6 +328,29 @@ export const PedalController: React.FC<PedalControllerProps> = ({
           </p>
         </div>
         <div className="flex items-center gap-2 flex-wrap">
+          {onTogglePedalEnabled && (
+            <button
+              type="button"
+              onClick={onTogglePedalEnabled}
+              title={
+                isPedalEnabled
+                  ? 'Pedal Físico Conectado e Ativo. Clique para desativar e liberar as teclas A, D do computador para digitação.'
+                  : 'Pedal Físico Desativado. Clique para reativar o pedal.'
+              }
+              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg transition-colors cursor-pointer border ${
+                isPedalEnabled
+                  ? 'bg-emerald-950/70 hover:bg-emerald-900 border-emerald-500/50 text-emerald-300'
+                  : 'bg-rose-950/80 hover:bg-rose-900 border-rose-500/70 text-rose-300 ring-1 ring-rose-500/30'
+              }`}
+            >
+              <span
+                className={`w-2 h-2 rounded-full ${
+                  isPedalEnabled ? 'bg-emerald-400 animate-pulse' : 'bg-rose-400'
+                }`}
+              />
+              <span>{isPedalEnabled ? 'Pedal Físico: Ativo' : 'Pedal Físico: Desativado'}</span>
+            </button>
+          )}
           {onOpenFootswitchConfig && (
             <button
               type="button"
@@ -329,13 +374,38 @@ export const PedalController: React.FC<PedalControllerProps> = ({
         </div>
       </div>
 
+      {/* Informational banner when physical pedal is disabled */}
+      {!isPedalEnabled && (
+        <div className="mb-4 px-3.5 py-2.5 rounded-xl bg-rose-950/50 border border-rose-500/50 text-rose-200 text-xs flex items-center justify-between gap-3 flex-wrap">
+          <div className="flex items-center gap-2">
+            <span className="text-base shrink-0">🛑</span>
+            <span>
+              <strong>Pedal Físico Desativado:</strong> O teclado do computador está 100% liberado para digitar nomes de ritmos (teclas <strong>A</strong>, <strong>D</strong>, espaço, etc. funcionam normalmente sem acionar pedais).
+            </span>
+          </div>
+          {onTogglePedalEnabled && (
+            <button
+              type="button"
+              onClick={onTogglePedalEnabled}
+              className="px-3 py-1 bg-rose-600 hover:bg-rose-500 text-white font-bold rounded-lg text-xs cursor-pointer shadow-xs shrink-0"
+            >
+              Reativar Pedal Físico
+            </button>
+          )}
+        </div>
+      )}
+
       {/* PROMINENT TOP STATUS BANNER: QUAL PARTE ESTÁ TOCANDO OU SELECIONADA */}
       <div
         className={`mb-4 px-4 py-2.5 rounded-xl border flex items-center justify-between gap-3 flex-wrap transition-all duration-200 ${
           isPlaying
-            ? isPartB
+            ? isPartC
+              ? 'bg-indigo-950/70 border-indigo-500 text-indigo-200 shadow-md shadow-indigo-500/20'
+              : isPartB
               ? 'bg-blue-950/70 border-blue-500 text-blue-200 shadow-md shadow-blue-500/20'
               : 'bg-cyan-950/70 border-cyan-500 text-cyan-200 shadow-md shadow-cyan-500/20'
+            : isPartC
+            ? 'bg-indigo-950/60 border-indigo-500/80 text-indigo-300 shadow-md shadow-indigo-500/10'
             : isPartB
             ? 'bg-blue-950/60 border-blue-500/80 text-blue-300 shadow-md shadow-blue-500/10'
             : 'bg-cyan-950/60 border-cyan-500/80 text-cyan-300 shadow-md shadow-cyan-500/10'
@@ -354,7 +424,7 @@ export const PedalController: React.FC<PedalControllerProps> = ({
         <div className="flex items-center gap-2">
           <span
             className={`text-sm sm:text-base font-black tracking-wide uppercase ${
-              isPartB ? 'text-blue-300' : 'text-cyan-300'
+              isPartC ? 'text-indigo-300' : isPartB ? 'text-blue-300' : 'text-cyan-300'
             }`}
           >
             {isPlaying
@@ -363,23 +433,27 @@ export const PedalController: React.FC<PedalControllerProps> = ({
                 : isOutro
                 ? 'FINALIZAÇÃO (END)'
                 : isTransition
-                ? activeTransitionId === 'transition_b_a'
-                  ? 'TRANSIÇÃO B ➔ A'
-                  : 'TRANSIÇÃO A ➔ B'
+                ? getTransitionDisplayName(activeTransitionId)
                 : isFill
-                ? activeFillId === 'fill_b'
+                ? activeFillId === 'fill_c'
+                  ? 'VIRADA (FILL C)'
+                  : activeFillId === 'fill_b'
                   ? 'VIRADA (FILL B)'
                   : 'VIRADA (FILL A)'
+                : isPartC
+                ? 'PARTE C'
                 : isPartB
                 ? 'PARTE B'
                 : 'PARTE A'
+              : isPartC
+              ? 'PARTE C'
               : isPartB
               ? 'PARTE B'
               : 'PARTE A'}
           </span>
           {!isPlaying && (
             <span className="text-[11px] text-slate-400 font-medium">
-              (Pise no Pedal 2 para alternar)
+              (Pise no Pedal 2 para alternar A ➔ B ➔ C)
             </span>
           )}
         </div>
@@ -601,6 +675,8 @@ export const PedalController: React.FC<PedalControllerProps> = ({
                 ? 'FINALIZANDO (END)'
                 : isIntro
                 ? 'PULAR INTRO ➔ PARTE A'
+                : isPartC
+                ? 'TAP: VIRADA (FILL C)'
                 : isPartB
                 ? 'TAP: VIRADA (FILL B)'
                 : 'TAP: VIRADA (FILL A)'}
@@ -618,7 +694,7 @@ export const PedalController: React.FC<PedalControllerProps> = ({
           </button>
         </div>
 
-        {/* PEDAL 2 (Direito): IN STOP: TAP PARTE A / B | IN PLAY: TAP TRANSIÇÃO A->B / B->A */}
+        {/* PEDAL 2 (Direito): IN STOP: TAP PARTE A / B / C | IN PLAY: TRANSIÇÕES */}
         <div className="flex flex-col items-center">
           <div className="text-xs font-bold text-slate-300 uppercase mb-1 tracking-wider">
             PEDAL 2 (Direito)
@@ -645,6 +721,8 @@ export const PedalController: React.FC<PedalControllerProps> = ({
                 ? isTransition
                   ? 'bg-purple-950/50 border-purple-400 shadow-[0_0_20px_rgba(168,85,247,0.3)]'
                   : 'bg-slate-900 border-purple-500/70 hover:border-purple-400 shadow-[0_4px_20px_rgba(168,85,247,0.15)]'
+                : isPartC
+                ? 'bg-slate-900 border-indigo-500/70 hover:border-indigo-400 shadow-[0_4px_20px_rgba(99,102,241,0.15)]'
                 : 'bg-slate-900 border-blue-500/70 hover:border-blue-400 shadow-[0_4px_20px_rgba(59,130,246,0.15)]'
             }`}
           >
@@ -654,19 +732,23 @@ export const PedalController: React.FC<PedalControllerProps> = ({
 
             <span className="text-base font-extrabold text-white tracking-wide uppercase text-center leading-tight">
               {!isPlaying
-                ? `TAP: MUDAR P/ ${isPartB ? 'PARTE A' : 'PARTE B'}`
+                ? `TAP: MUDAR P/ ${isPartA ? 'PARTE B' : isPartB ? 'PARTE C' : 'PARTE A'}`
                 : isTransition
-                ? (activeTransitionId === 'transition_b_a' ? 'TRANSIÇÃO B ➔ A' : 'TRANSIÇÃO A ➔ B')
+                ? getTransitionDisplayName(activeTransitionId)
                 : isPartB
-                ? 'TAP: TRANSIÇÃO B ➔ A'
+                ? '1 TOQUE: TRANS B ➔ C'
+                : isPartC
+                ? '1 TOQUE: TRANS C ➔ A'
                 : 'TAP: TRANSIÇÃO A ➔ B'}
             </span>
 
             <span className="text-xs text-purple-300 font-semibold mt-1 text-center">
               {!isPlaying
-                ? `Selecionada: ${isPartB ? 'Parte B' : 'Parte A'}`
+                ? `Selecionada: ${isPartC ? 'Parte C' : isPartB ? 'Parte B' : 'Parte A'}`
                 : isPartB
-                ? 'Transita da Parte B para a Parte A'
+                ? '1 toque: vai p/ C • ⚡ 2 toques: volta p/ A'
+                : isPartC
+                ? '1 toque: vai p/ A • ⚡ 2 toques: volta p/ B'
                 : 'Transita da Parte A para a Parte B'}
             </span>
 

@@ -17,6 +17,8 @@ import { DeleteRhythmModal } from './components/DeleteRhythmModal';
 import { CopyPartModal } from './components/CopyPartModal';
 import { FootswitchConfigModal } from './components/FootswitchConfigModal';
 import { SamplesLibraryView } from './components/SamplesLibraryView';
+import { DrumKitManagerModal } from './components/DrumKitManagerModal';
+import { DrumKitDefinition } from './types/kit';
 import { AudioVisualizer } from './components/AudioVisualizer';
 import { MobileAndPedalGuideModal } from './components/MobileAndPedalGuideModal';
 import { ShareMobileModal } from './components/ShareMobileModal';
@@ -132,6 +134,40 @@ export default function App() {
   const [isExternalPedal1Pressed, setIsExternalPedal1Pressed] = useState(false);
   const [isExternalPedal2Pressed, setIsExternalPedal2Pressed] = useState(false);
 
+  // Physical footswitch enabled / disabled toggle
+  const [isPedalEnabled, setIsPedalEnabled] = useState<boolean>(() => {
+    try {
+      const saved = localStorage.getItem('beatbuddy_pedal_enabled');
+      return saved !== null ? saved === 'true' : true;
+    } catch {
+      return true;
+    }
+  });
+
+  const isPedalEnabledRef = useRef(isPedalEnabled);
+  useEffect(() => {
+    isPedalEnabledRef.current = isPedalEnabled;
+    footswitchManager.setEnabled(isPedalEnabled);
+  }, [isPedalEnabled]);
+
+  const togglePedalEnabled = () => {
+    setIsPedalEnabled((prev) => {
+      const next = !prev;
+      try {
+        localStorage.setItem('beatbuddy_pedal_enabled', String(next));
+      } catch {
+        // ignore
+      }
+      footswitchManager.setEnabled(next);
+      triggerPedalToast(
+        next
+          ? '🦶 Pedal Físico Ativado'
+          : '🛑 Pedal Físico Desativado (Digitação 100% Liberada)'
+      );
+      return next;
+    });
+  };
+
   // Master controls
   const [masterVolume, setMasterVolume] = useState(0.85);
   const [metronomeOn, setMetronomeOn] = useState(false);
@@ -143,12 +179,29 @@ export default function App() {
   const [isDeleteRhythmOpen, setIsDeleteRhythmOpen] = useState(false);
   const [isCopyPartOpen, setIsCopyPartOpen] = useState(false);
   const [isFootswitchConfigOpen, setIsFootswitchConfigOpen] = useState(false);
+  const [isDrumKitModalOpen, setIsDrumKitModalOpen] = useState(false);
   const [isMobileGuideOpen, setIsMobileGuideOpen] = useState(false);
   const [isShareMobileOpen, setIsShareMobileOpen] = useState(false);
   const [isAudioUnlocked, setIsAudioUnlocked] = useState(false);
   const [customSamplesList, setCustomSamplesList] = useState<Array<{ id: string; name: string }>>(() =>
     audioEngine.getCustomSamplesList()
   );
+
+  const isAnyModalOpen = Boolean(
+    editingTrack ||
+    isAddTrackOpen ||
+    isCreateRhythmOpen ||
+    isDeleteRhythmOpen ||
+    isCopyPartOpen ||
+    isFootswitchConfigOpen ||
+    isDrumKitModalOpen ||
+    isMobileGuideOpen ||
+    isShareMobileOpen
+  );
+  const isModalOpenRef = useRef(isAnyModalOpen);
+  useEffect(() => {
+    isModalOpenRef.current = isAnyModalOpen;
+  }, [isAnyModalOpen]);
 
   // Stable refs for global pedal actions
   const stateRef = useRef({
@@ -462,6 +515,7 @@ export default function App() {
   // Operates continuously across ALL views (Sequencer, Pedal, Samples)
   useEffect(() => {
     let pedal1SingleTapTimer: number | null = null;
+    let pedal2SingleTapTimer: number | null = null;
     let pedal1PhysicalDown = false;
     let pedal1DownTimestamp = 0;
     let pedal1HoldTriggered = false;
@@ -633,7 +687,12 @@ export default function App() {
           pedal1SingleTapTimer = null;
           if (stateRef.current.isPlaying && !stateRef.current.isOutro && !stateRef.current.isIntro) {
             audioEngine.handlePedal1Tap();
-            const targetFill = stateRef.current.basePartId === 'part_b' ? 'Fill B' : 'Fill A';
+            const targetFill =
+              stateRef.current.basePartId === 'part_c'
+                ? 'Fill C'
+                : stateRef.current.basePartId === 'part_b'
+                ? 'Fill B'
+                : 'Fill A';
             triggerPedalToast(`🦶 Pedal 1: Virada (${targetFill}) Disparada!`);
           }
         }, 320);
@@ -641,12 +700,16 @@ export default function App() {
     };
 
     // PEDAL 2:
-    // IN STOP: TAP -> Alterna PARTE A / PARTE B
-    // IN PLAY: TAP -> TRANSIÇÃO A -> B / TRANSIÇÃO B -> A
+    // IN STOP: TAP -> Alterna PARTE A ➔ PARTE B ➔ PARTE C
+    // IN PLAY:
+    // - Em Parte A: 1 toque -> Transição A ➔ B (vai para Parte B)
+    // - Em Parte B: 1 toque -> Transição B ➔ C (vai para Parte C) | 2 toques rápidos -> Transição B ➔ A (volta para Parte A)
+    // - Em Parte C: 1 toque -> Transição C ➔ A (vai para Parte A) | 2 toques rápidos -> Transição C ➔ B (volta para Parte B)
     const handlePedal2Down = () => {
       const now = Date.now();
       const debounceMs = footswitchManager.getDebounceTime();
-      if (now - lastPedal2PressTime < Math.max(300, debounceMs)) return;
+      // Allow rapid second tap for double tap transitions (reject only < 80ms bounce)
+      if (now - lastPedal2PressTime < Math.max(80, Math.min(150, debounceMs))) return;
       lastPedal2PressTime = now;
 
       setIsExternalPedal2Pressed(true);
@@ -656,13 +719,61 @@ export default function App() {
       }
 
       if (!stateRef.current.isPlaying) {
-        audioEngine.handlePedal2Tap();
-        const nextPart = stateRef.current.selectedStartPart === 'verse' ? 'Parte B' : 'Parte A';
-        triggerPedalToast(`🦶 Pedal 2 (PageUp): Selecionada ${nextPart} para iniciar`);
+        if (pedal2SingleTapTimer) {
+          clearTimeout(pedal2SingleTapTimer);
+          pedal2SingleTapTimer = null;
+        }
+        audioEngine.handlePedal2Tap(false);
+        const selPart = audioEngine.getSelectedStartPart();
+        const partLabel = selPart === 'part_c' ? 'Parte C' : selPart === 'part_b' ? 'Parte B' : 'Parte A';
+        triggerPedalToast(`🦶 Pedal 2 (PageUp): Selecionada ${partLabel} para iniciar`);
+        return;
+      }
+
+      // IN PLAY:
+      const currentBase = stateRef.current.basePartId;
+      if (currentBase === 'verse') {
+        // Em Parte A: 1 toque segue para Parte B
+        audioEngine.handlePedal2Tap(false);
+        triggerPedalToast('🦶 Pedal 2: Transição A ➔ B (Vai para Parte B)!');
+      } else if (currentBase === 'part_b') {
+        // Em Parte B:
+        if (pedal2SingleTapTimer !== null) {
+          // 2 toques rápidos: volta para Parte A!
+          clearTimeout(pedal2SingleTapTimer);
+          pedal2SingleTapTimer = null;
+          audioEngine.handlePedal2Tap(true);
+          triggerPedalToast('🦶 Pedal 2 (2 Toques Rápidos): Transição B ➔ A (Volta para Parte A)!');
+        } else {
+          // 1 toque: agenda transição para Parte C
+          pedal2SingleTapTimer = window.setTimeout(() => {
+            pedal2SingleTapTimer = null;
+            if (stateRef.current.isPlaying) {
+              audioEngine.handlePedal2Tap(false);
+              triggerPedalToast('🦶 Pedal 2 (1 Toque): Transição B ➔ C (Segue para Parte C)!');
+            }
+          }, 320);
+        }
+      } else if (currentBase === 'part_c') {
+        // Em Parte C:
+        if (pedal2SingleTapTimer !== null) {
+          // 2 toques rápidos: volta para Parte B!
+          clearTimeout(pedal2SingleTapTimer);
+          pedal2SingleTapTimer = null;
+          audioEngine.handlePedal2Tap(true);
+          triggerPedalToast('🦶 Pedal 2 (2 Toques Rápidos): Transição C ➔ B (Volta para Parte B)!');
+        } else {
+          // 1 toque: agenda transição para Parte A
+          pedal2SingleTapTimer = window.setTimeout(() => {
+            pedal2SingleTapTimer = null;
+            if (stateRef.current.isPlaying) {
+              audioEngine.handlePedal2Tap(false);
+              triggerPedalToast('🦶 Pedal 2 (1 Toque): Transição C ➔ A (Segue para Parte A)!');
+            }
+          }, 320);
+        }
       } else {
-        audioEngine.handlePedal2Tap();
-        const transLabel = stateRef.current.basePartId === 'part_b' ? 'Transição B ➔ A' : 'Transição A ➔ B';
-        triggerPedalToast(`🦶 Pedal 2 (PageUp): ${transLabel} Disparada!`);
+        audioEngine.handlePedal2Tap(false);
       }
     };
 
@@ -681,33 +792,41 @@ export default function App() {
     // Connect footswitchManager callbacks
     footswitchManager.setCallbacks({
       onPedal1: () => {
+        if (!isPedalEnabledRef.current || isModalOpenRef.current) return;
         handlePedal1Down(false);
         setTimeout(handlePedal1Up, 100);
       },
       onPedal2: () => {
+        if (!isPedalEnabledRef.current || isModalOpenRef.current) return;
         handlePedal2Down();
         setTimeout(handlePedal2Up, 100);
       },
       onActivity: (signal) => {
+        if (!isPedalEnabledRef.current) return;
         triggerPedalToast(`🦶 Sinal Cube Turner: ${signal.value}`);
       },
     });
 
     const isRealTextInput = (el: EventTarget | null): boolean => {
       if (!el) return false;
-      if (el instanceof HTMLTextAreaElement) return true;
-      if (el instanceof HTMLInputElement) {
+      const target = el as HTMLElement;
+      if (target.isContentEditable) return true;
+      const tagName = (target.tagName || '').toUpperCase();
+      if (tagName === 'TEXTAREA' || tagName === 'SELECT') return true;
+      if (tagName === 'INPUT') {
+        const input = target as HTMLInputElement;
         if (
-          el.getAttribute('inputmode') === 'none' ||
-          el.getAttribute('data-pedal-input') === 'true' ||
-          el.classList.contains('pedal-input-receiver') ||
-          el.type === 'hidden'
+          input.getAttribute('inputmode') === 'none' ||
+          input.getAttribute('data-pedal-input') === 'true' ||
+          input.classList.contains('pedal-input-receiver') ||
+          input.type === 'hidden'
         ) {
           return false;
         }
-        return ['text', 'search', 'email', 'number', 'password', 'url'].includes(
-          el.type.toLowerCase()
-        );
+        return true;
+      }
+      if (target.closest && target.closest('input, textarea, select, [contenteditable="true"]')) {
+        return true;
       }
       return false;
     };
@@ -748,6 +867,27 @@ export default function App() {
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
+      // 1. If user is inside footswitch config learning a key, let the modal handle it
+      if (footswitchManager.getLearningTarget() !== null) {
+        footswitchManager.handleKeyEventForLearning(e);
+        return;
+      }
+
+      // 2. NEVER intercept typing if user is in any real text input, textarea or contenteditable!
+      if (isRealTextInput(e.target)) {
+        return;
+      }
+
+      // 3. If pedal is toggled OFF by the user, ignore all pedal keyboard events!
+      if (!isPedalEnabledRef.current) {
+        return;
+      }
+
+      // 4. If any text-entry modal is open (e.g. Criar Novo Ritmo, Editar Pista), do not trigger pedal actions
+      if (isModalOpenRef.current) {
+        return;
+      }
+
       const isPedal1 = footswitchManager.isPedal1Event(e);
       const isPedal2 = footswitchManager.isPedal2Event(e);
       const isPgTurner = isPageTurnerKey(e);
@@ -758,19 +898,10 @@ export default function App() {
         e.stopPropagation();
       }
 
-      // Ignore regular typing ONLY if user is typing in a real text input and it's NOT a pedal key
-      if (isRealTextInput(e.target) && !isPedal1 && !isPedal2 && !isPgTurner) return;
-
       // Unmute audio immediately if locked on mobile
       if (!isAudioUnlocked) {
         audioEngine.unlockAudioContext();
         setIsAudioUnlocked(true);
-      }
-
-      // If user is inside footswitch config learning a key, let the modal handle it
-      if (footswitchManager.getLearningTarget() !== null) {
-        footswitchManager.handleKeyEventForLearning(e);
-        return;
       }
 
       const keyLabel = e.key === ' ' ? 'Espaço' : (e.key || e.code || `KeyCode #${e.keyCode}`);
@@ -812,6 +943,11 @@ export default function App() {
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
+      if (footswitchManager.getLearningTarget() !== null) return;
+      if (isRealTextInput(e.target)) return;
+      if (!isPedalEnabledRef.current) return;
+      if (isModalOpenRef.current) return;
+
       const isPedal1 = footswitchManager.isPedal1Event(e);
       const isPedal2 = footswitchManager.isPedal2Event(e);
       const isPgTurner = isPageTurnerKey(e);
@@ -820,9 +956,6 @@ export default function App() {
         e.preventDefault();
         e.stopPropagation();
       }
-
-      if (isRealTextInput(e.target) && !isPedal1 && !isPedal2 && !isPgTurner) return;
-      if (footswitchManager.getLearningTarget() !== null) return;
 
       if (isPedal1) {
         e.preventDefault();
@@ -838,6 +971,9 @@ export default function App() {
     // HARDWARE SCROLL INTERCEPTOR (Android Chrome Fallback)
     // Only triggers if native browser swallowed key event completely (no keydown in last 800ms)
     const handleNativePageScroll = () => {
+      if (!isPedalEnabledRef.current || isModalOpenRef.current) {
+        return;
+      }
       const currentY = window.scrollY || document.documentElement.scrollTop || 0;
       const delta = currentY - lastScrollY;
       const now = Date.now();
@@ -1006,7 +1142,7 @@ export default function App() {
   const handleSelectPart = (partId: SongPartId) => {
     setActivePartId(partId);
     setPlayingPartId(partId);
-    if (partId === 'verse' || partId === 'part_b') {
+    if (partId === 'verse' || partId === 'part_b' || partId === 'part_c') {
       setSelectedStartPart(partId);
       setBasePartId(partId);
     }
@@ -1022,9 +1158,25 @@ export default function App() {
     starterKit: StarterKitType;
     resolution?: RhythmicResolution;
     barsCount?: number;
+    customKitTracks?: TrackDefinition[];
   }) => {
     audioEngine.stop();
     const newProject = createNewCustomRhythm(params);
+    if (params.customKitTracks && params.customKitTracks.length > 0) {
+      newProject.tracks = params.customKitTracks;
+      // Initialize steps for all parts
+      Object.keys(newProject.parts).forEach((partKey) => {
+        const pId = partKey as SongPartId;
+        const p = newProject.parts[pId];
+        if (p) {
+          const newSteps: Record<string, StepData[]> = {};
+          params.customKitTracks!.forEach((t) => {
+            newSteps[t.id] = createEmptySteps(newProject.defaultStepCount || 32);
+          });
+          p.trackSteps = newSteps;
+        }
+      });
+    }
     const updatedList = [...rhythms, newProject];
     setRhythms(updatedList);
     try {
@@ -1036,7 +1188,80 @@ export default function App() {
     setProject(newProject);
     setActivePartId('verse');
     setPlayingPartId('verse');
-    triggerPedalToast(`Ritmo "${newProject.name}" salvo na nuvem!`);
+    triggerPedalToast(`Ritmo "${newProject.name}" criado com sucesso!`);
+  };
+
+  const handleApplyDrumKitToProject = (kit: DrumKitDefinition, preserveStepData: boolean) => {
+    audioEngine.stop();
+    setProject((prev) => {
+      let nextTracks: TrackDefinition[] = [];
+
+      if (preserveStepData) {
+        // Map new kit's properties onto existing tracks or append new ones
+        nextTracks = kit.tracks.map((kitTrack, index) => {
+          const existingTrack = prev.tracks[index];
+          return {
+            ...kitTrack,
+            id: existingTrack ? existingTrack.id : kitTrack.id,
+            muted: existingTrack ? existingTrack.muted : false,
+            solo: existingTrack ? existingTrack.solo : false,
+          };
+        });
+
+        const updatedProject: SongProject = {
+          ...prev,
+          tracks: nextTracks,
+        };
+
+        const updatedList = rhythms.map((r) => (r.id === prev.id ? updatedProject : r));
+        setRhythms(updatedList);
+        try {
+          localStorage.setItem('beatbuddy_rhythms', JSON.stringify(updatedList));
+          saveRhythmsToServer(updatedList).catch(() => {});
+        } catch (err) {
+          console.error(err);
+        }
+
+        return updatedProject;
+      } else {
+        // Replace tracks completely
+        nextTracks = [...kit.tracks];
+        const nextParts = { ...prev.parts };
+        Object.keys(nextParts).forEach((partKey) => {
+          const partId = partKey as SongPartId;
+          const p = nextParts[partId];
+          if (p) {
+            const newSteps: Record<string, StepData[]> = {};
+            nextTracks.forEach((t) => {
+              newSteps[t.id] = createEmptySteps(prev.defaultStepCount || 32);
+            });
+            nextParts[partId] = {
+              ...p,
+              trackSteps: newSteps,
+            };
+          }
+        });
+
+        const updatedProject: SongProject = {
+          ...prev,
+          tracks: nextTracks,
+          parts: nextParts,
+        };
+
+        const updatedList = rhythms.map((r) => (r.id === prev.id ? updatedProject : r));
+        setRhythms(updatedList);
+        try {
+          localStorage.setItem('beatbuddy_rhythms', JSON.stringify(updatedList));
+          saveRhythmsToServer(updatedList).catch(() => {});
+        } catch (err) {
+          console.error(err);
+        }
+
+        return updatedProject;
+      }
+    });
+
+    triggerPedalToast(`🥁 Kit "${kit.name}" aplicado ao ritmo atual!`);
   };
 
   const handleDeleteRhythm = (rhythmId: string) => {
@@ -1392,6 +1617,7 @@ export default function App() {
         activeView={activeView}
         onSelectView={setActiveView}
         onOpenCreateModal={() => setIsCreateRhythmOpen(true)}
+        onOpenDrumKitModal={() => setIsDrumKitModalOpen(true)}
         onOpenFootswitchModal={() => setIsFootswitchConfigOpen(true)}
         onOpenMobileGuide={() => setIsMobileGuideOpen(true)}
         onOpenShareMobile={() => setIsShareMobileOpen(true)}
@@ -1402,6 +1628,8 @@ export default function App() {
         isFirebaseLoading={isFirebaseLoading}
         onLoginFirebase={handleLoginFirebase}
         onLogoutFirebase={handleLogoutFirebase}
+        isPedalEnabled={isPedalEnabled}
+        onTogglePedalEnabled={togglePedalEnabled}
       />
 
       {/* Mobile Audio Activation Banner (shown until first user touch/click) */}
@@ -1441,6 +1669,7 @@ export default function App() {
           playIntroOnStart={playIntroOnStart}
           canDeleteRhythm={rhythms.length > 1}
           isSavedRecently={isSavedRecently}
+          onOpenDrumKitModal={() => setIsDrumKitModalOpen(true)}
           onSaveProjectToApp={handleSaveProjectToApp}
           onTogglePlay={handleTogglePlay}
           onBpmChange={handleBpmChange}
@@ -1727,6 +1956,8 @@ export default function App() {
                 onPedal2Tap={handlePedal2Tap}
                 onStop={handleStop}
                 onOpenFootswitchConfig={() => setIsFootswitchConfigOpen(true)}
+                isPedalEnabled={isPedalEnabled}
+                onTogglePedalEnabled={togglePedalEnabled}
               />
             </div>
           </div>
@@ -1766,6 +1997,8 @@ export default function App() {
         <CreateRhythmModal
           onClose={() => setIsCreateRhythmOpen(false)}
           onCreate={handleCreateNewRhythm}
+          isPedalEnabled={isPedalEnabled}
+          onTogglePedalEnabled={togglePedalEnabled}
         />
       )}
 
@@ -1793,6 +2026,8 @@ export default function App() {
       {isFootswitchConfigOpen && (
         <FootswitchConfigModal
           onClose={() => setIsFootswitchConfigOpen(false)}
+          isPedalEnabled={isPedalEnabled}
+          onTogglePedalEnabled={togglePedalEnabled}
         />
       )}
 
@@ -1801,6 +2036,15 @@ export default function App() {
         <MobileAndPedalGuideModal
           onClose={() => setIsMobileGuideOpen(false)}
           onOpenPedalSettings={() => setIsFootswitchConfigOpen(true)}
+        />
+      )}
+
+      {/* Drum Kit Manager & Creator Modal */}
+      {isDrumKitModalOpen && (
+        <DrumKitManagerModal
+          currentProjectTracks={project.tracks}
+          onClose={() => setIsDrumKitModalOpen(false)}
+          onApplyKitToProject={handleApplyDrumKitToProject}
         />
       )}
 

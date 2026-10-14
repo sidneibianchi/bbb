@@ -11,10 +11,15 @@ export const PARTS_LIST: Array<{ id: SongPartId; label: string; badge: string; g
   { id: 'intro', label: 'Intro (Introdução)', badge: 'Intro', group: 'estrutural' },
   { id: 'verse', label: 'Parte A', badge: 'Parte A', group: 'principal' },
   { id: 'part_b', label: 'Parte B', badge: 'Parte B', group: 'principal' },
+  { id: 'part_c', label: 'Parte C', badge: 'Parte C', group: 'principal' },
   { id: 'fill_a', label: 'Fill A (Virada Parte A)', badge: 'Fill A', group: 'virada' },
   { id: 'fill_b', label: 'Fill B (Virada Parte B)', badge: 'Fill B', group: 'virada' },
+  { id: 'fill_c', label: 'Fill C (Virada Parte C)', badge: 'Fill C', group: 'virada' },
   { id: 'transition_a_b', label: 'Transição A -> B', badge: 'Trans A-B', group: 'virada' },
   { id: 'transition_b_a', label: 'Transição B -> A', badge: 'Trans B-A', group: 'virada' },
+  { id: 'transition_b_c', label: 'Transição B -> C', badge: 'Trans B-C', group: 'virada' },
+  { id: 'transition_c_b', label: 'Transição C -> B', badge: 'Trans C-B', group: 'virada' },
+  { id: 'transition_c_a', label: 'Transição C -> A', badge: 'Trans C-A', group: 'virada' },
   { id: 'outro', label: 'End (Finalização)', badge: 'End', group: 'estrutural' },
 ];
 

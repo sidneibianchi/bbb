@@ -17,6 +17,7 @@ import {
   Trash2,
   Check,
   Download,
+  Disc3,
 } from 'lucide-react';
 import { SongProject, TimeSignature, RhythmicResolution } from '../types/rhythm';
 
@@ -29,6 +30,7 @@ interface MasterToolbarProps {
   playIntroOnStart: boolean;
   canDeleteRhythm: boolean;
   isSavedRecently?: boolean;
+  onOpenDrumKitModal?: () => void;
   onSaveProjectToApp: () => void;
   onTogglePlay: () => void;
   onBpmChange: (bpm: number) => void;
@@ -56,6 +58,7 @@ export const MasterToolbar: React.FC<MasterToolbarProps> = ({
   playIntroOnStart,
   canDeleteRhythm: _canDeleteRhythm,
   isSavedRecently = false,
+  onOpenDrumKitModal,
   onSaveProjectToApp,
   onTogglePlay,
   onBpmChange,
@@ -317,6 +320,19 @@ export const MasterToolbar: React.FC<MasterToolbarProps> = ({
               <Plus className="w-3.5 h-3.5" />
               <span>Novo</span>
             </button>
+
+            {/* Gerenciador de Kits de Bateria */}
+            {onOpenDrumKitModal && (
+              <button
+                type="button"
+                title="Gerenciar e criar kits de som e bateria na memória"
+                onClick={onOpenDrumKitModal}
+                className="flex items-center gap-1 px-2 py-0.5 text-xs font-bold text-cyan-300 hover:text-slate-950 bg-cyan-950/40 hover:bg-cyan-400 border border-cyan-500/40 rounded transition-all cursor-pointer"
+              >
+                <Disc3 className="w-3.5 h-3.5" />
+                <span>Kits</span>
+              </button>
+            )}
 
             {/* Excluir Ritmo Atual */}
             <button

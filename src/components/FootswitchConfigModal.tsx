@@ -13,10 +13,14 @@ import {
 
 interface FootswitchConfigModalProps {
   onClose: () => void;
+  isPedalEnabled?: boolean;
+  onTogglePedalEnabled?: () => void;
 }
 
 export const FootswitchConfigModal: React.FC<FootswitchConfigModalProps> = ({
   onClose,
+  isPedalEnabled = true,
+  onTogglePedalEnabled,
 }) => {
   const [config, setConfig] = useState<FootswitchConfig>(() =>
     footswitchManager.getConfig()
@@ -155,6 +159,42 @@ export const FootswitchConfigModal: React.FC<FootswitchConfigModalProps> = ({
         </div>
 
         <div className="p-6 space-y-5 text-xs max-h-[75vh] overflow-y-auto">
+          {/* Quick Pedal Enable/Disable Toggle */}
+          {onTogglePedalEnabled && (
+            <div className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between gap-3 flex-wrap">
+              <div>
+                <div className="text-xs font-bold text-white flex items-center gap-2">
+                  <span>Reconhecimento do Pedal Físico:</span>
+                  <span
+                    className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                      isPedalEnabled
+                        ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+                        : 'bg-rose-500/20 text-rose-300 border border-rose-500/40'
+                    }`}
+                  >
+                    {isPedalEnabled ? 'LIGADO / ATIVO' : 'DESATIVADO (DIGITAÇÃO 100% LIVRE)'}
+                  </span>
+                </div>
+                <p className="text-[11px] text-slate-400 mt-1">
+                  {isPedalEnabled
+                    ? 'O app recebe os sinais do pedal e atalhos físicos. (Textos e campos de formulário nunca são bloqueados).'
+                    : 'Pedal pausado. Teclas A, D, PageUp/Down e espaço atuam exclusivamente como teclas normais do computador.'}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={onTogglePedalEnabled}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold cursor-pointer transition-colors shadow-xs ${
+                  isPedalEnabled
+                    ? 'bg-rose-600 hover:bg-rose-500 text-white'
+                    : 'bg-emerald-600 hover:bg-emerald-500 text-white'
+                }`}
+              >
+                {isPedalEnabled ? 'Desativar Pedal Físico' : 'Ativar Pedal Físico'}
+              </button>
+            </div>
+          )}
+
           {/* Live Signal Sensor Box */}
           <div
             className={`p-4 rounded-xl border transition-all ${

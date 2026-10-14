@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Plus, Radio, Smartphone, Cloud, CloudCheck, RefreshCw, LogIn, LogOut, Database, User as UserIcon } from 'lucide-react';
+import { Plus, Radio, Smartphone, Cloud, CloudCheck, RefreshCw, LogIn, LogOut, Database, User as UserIcon, Sliders } from 'lucide-react';
 import type { User } from '../firebase';
 
 interface HeaderProps {
@@ -16,12 +16,16 @@ interface HeaderProps {
   isFirebaseLoading?: boolean;
   onLoginFirebase?: () => void;
   onLogoutFirebase?: () => void;
+  isPedalEnabled?: boolean;
+  onTogglePedalEnabled?: () => void;
+  onOpenDrumKitModal?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   activeView,
   onSelectView,
   onOpenCreateModal,
+  onOpenDrumKitModal,
   onOpenFootswitchModal,
   onOpenMobileGuide,
   onOpenShareMobile,
@@ -32,6 +36,8 @@ export const Header: React.FC<HeaderProps> = ({
   isFirebaseLoading = false,
   onLoginFirebase,
   onLogoutFirebase,
+  isPedalEnabled = true,
+  onTogglePedalEnabled,
 }) => {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -265,6 +271,34 @@ export const Header: React.FC<HeaderProps> = ({
             <span>Abrir no Celular</span>
           </button>
         )}
+        {onTogglePedalEnabled && (
+          <button
+            type="button"
+            onClick={onTogglePedalEnabled}
+            title={
+              isPedalEnabled
+                ? 'Pedal Físico ATIVO. Clique para desativar e liberar digitação livre das teclas A, D, espaço, etc.'
+                : 'Pedal Físico DESATIVADO. Teclado liberado para digitação livre. Clique para reativar o pedal.'
+            }
+            className={`flex items-center gap-1.5 px-3 py-2 text-xs font-bold rounded-lg transition-all cursor-pointer shadow-sm border ${
+              isPedalEnabled
+                ? 'bg-emerald-500/15 border-emerald-500/50 text-emerald-300 hover:bg-emerald-500/25'
+                : 'bg-rose-500/20 border-rose-500/60 text-rose-300 hover:bg-rose-500/30 ring-1 ring-rose-500/40'
+            }`}
+          >
+            <span
+              className={`w-2 h-2 rounded-full ${
+                isPedalEnabled ? 'bg-emerald-400 animate-pulse' : 'bg-rose-400'
+              }`}
+            />
+            <span className="hidden sm:inline">
+              {isPedalEnabled ? 'Pedal: Ligado' : 'Pedal: Desativado'}
+            </span>
+            <span className="sm:hidden">
+              {isPedalEnabled ? 'Pedal ON' : 'Pedal OFF'}
+            </span>
+          </button>
+        )}
         {onOpenFootswitchModal && (
           <button
             type="button"
@@ -274,6 +308,17 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <Radio className="w-3.5 h-3.5 text-cyan-400" />
             <span className="hidden sm:inline">Pedal Cuvave</span>
+          </button>
+        )}
+        {onOpenDrumKitModal && (
+          <button
+            type="button"
+            title="Criar e gerenciar Kits de Bateria e Percussão na memória"
+            onClick={onOpenDrumKitModal}
+            className="flex items-center gap-1.5 px-3 py-2 text-xs font-bold text-amber-300 hover:text-white bg-slate-900 hover:bg-slate-800 border border-amber-500/40 rounded-lg transition-colors cursor-pointer"
+          >
+            <Sliders className="w-3.5 h-3.5 text-amber-400" />
+            <span className="hidden sm:inline">Kits de Bateria</span>
           </button>
         )}
         <button

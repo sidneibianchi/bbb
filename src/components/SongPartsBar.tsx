@@ -23,10 +23,15 @@ const PARTS_CONFIG: Array<{ id: SongPartId; label: string; badge: string; color:
   { id: 'intro', label: 'Intro', badge: 'Intro', color: 'border-emerald-500 text-emerald-400' },
   { id: 'verse', label: 'Parte A', badge: 'Parte A', color: 'border-cyan-500 text-cyan-400' },
   { id: 'part_b', label: 'Parte B', badge: 'Parte B', color: 'border-blue-500 text-blue-400' },
+  { id: 'part_c', label: 'Parte C', badge: 'Parte C', color: 'border-indigo-500 text-indigo-400' },
   { id: 'fill_a', label: 'Fill A', badge: 'Fill A', color: 'border-amber-500 text-amber-400' },
   { id: 'fill_b', label: 'Fill B', badge: 'Fill B', color: 'border-orange-500 text-orange-400' },
+  { id: 'fill_c', label: 'Fill C', badge: 'Fill C', color: 'border-yellow-500 text-yellow-400' },
   { id: 'transition_a_b', label: 'Transição A -> B', badge: 'Trans A-B', color: 'border-purple-500 text-purple-400' },
   { id: 'transition_b_a', label: 'Transição B -> A', badge: 'Trans B-A', color: 'border-fuchsia-500 text-fuchsia-400' },
+  { id: 'transition_b_c', label: 'Transição B -> C', badge: 'Trans B-C', color: 'border-violet-500 text-violet-400' },
+  { id: 'transition_c_b', label: 'Transição C -> B', badge: 'Trans C-B', color: 'border-pink-500 text-pink-400' },
+  { id: 'transition_c_a', label: 'Transição C -> A', badge: 'Trans C-A', color: 'border-teal-500 text-teal-400' },
   { id: 'outro', label: 'End', badge: 'End', color: 'border-rose-500 text-rose-400' },
 ];
 
