@@ -268,6 +268,46 @@ export const FootswitchConfigModal: React.FC<FootswitchConfigModalProps> = ({
             </div>
           </div>
 
+          {/* Sensibilidade / Hold Time Section */}
+          <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="font-bold text-white text-xs flex items-center gap-1.5">
+                <span>⏱️ Sensibilidade do Pedal (Tempo de Hold para Ending)</span>
+              </span>
+              <span className="text-amber-400 font-mono font-bold text-xs">
+                {config.holdThresholdMs || 650}ms
+              </span>
+            </div>
+            <p className="text-slate-400 text-[11px]">
+              Define quantos milissegundos você precisa manter o pé pisado no Pedal 1 para chamar a finalização (Ending). Toques rápidos sempre disparam virada (Fill).
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1">
+              {[
+                { ms: 450, label: '450ms (Rápido)', desc: 'Para pés muito ágeis' },
+                { ms: 650, label: '650ms (Normal - Padrão)', desc: 'Ideal para Cuvave / BeatBuddy' },
+                { ms: 850, label: '850ms (Seguro)', desc: 'Evita acionamento acidental' },
+              ].map((opt) => (
+                <button
+                  key={opt.ms}
+                  type="button"
+                  onClick={() => {
+                    const next = { ...config, holdThresholdMs: opt.ms };
+                    setConfig(next);
+                    footswitchManager.saveConfig(next);
+                  }}
+                  className={`p-2.5 rounded-lg border text-left transition-all cursor-pointer ${
+                    (config.holdThresholdMs || 650) === opt.ms
+                      ? 'bg-amber-400/20 border-amber-400 text-white font-bold'
+                      : 'bg-slate-900 border-slate-800 text-slate-300 hover:border-slate-700'
+                  }`}
+                >
+                  <span className="text-[11px] block">{opt.label}</span>
+                  <span className="text-[10px] text-slate-400 block mt-0.5">{opt.desc}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
           {/* Mode Selector Presets */}
           <div>
             <label className="block text-slate-300 font-bold mb-2 uppercase tracking-wider text-[11px]">

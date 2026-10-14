@@ -15,9 +15,11 @@ export interface FootswitchConfig {
   midiEnabled: boolean;
   midiMainNotes: number[]; // MIDI note numbers or CC (e.g. 60 or CC 64)
   midiAccentNotes: number[];
+  holdThresholdMs?: number; // Time in ms to detect holding (default 650ms for Ending)
+  debounceMs?: number; // Anti-chatter debounce time (default 220ms)
 }
 
-const STORAGE_KEY = 'beatbuddy_footswitch_config_v3';
+const STORAGE_KEY = 'beatbuddy_footswitch_config_v4';
 
 export function isPageDownKey(e: KeyboardEvent): boolean {
   const k = (e.key || '').toLowerCase().replace(/[-_\s]/g, '');
@@ -119,6 +121,8 @@ export const DEFAULT_FOOTSWITCH_CONFIG: FootswitchConfig = {
   midiEnabled: true,
   midiMainNotes: [60, 64, 36, 48, 1, 65], // Middle C, CC64 Sustain, Bass C, C3, CC1, CC65
   midiAccentNotes: [62, 65, 38, 50, 2, 66], // D, CC65, D3, CC2, CC66
+  holdThresholdMs: 650, // 650ms standard hold time for Ending
+  debounceMs: 220, // 220ms anti-chatter
 };
 
 export class FootswitchManager {
@@ -161,6 +165,24 @@ export class FootswitchManager {
 
   public getConfig(): FootswitchConfig {
     return { ...this.config };
+  }
+
+  public getHoldThreshold(): number {
+    return this.config.holdThresholdMs || 650;
+  }
+
+  public setHoldThreshold(ms: number) {
+    this.config.holdThresholdMs = Math.max(350, Math.min(1500, ms));
+    this.saveConfig(this.config);
+  }
+
+  public getDebounceTime(): number {
+    return this.config.debounceMs || 220;
+  }
+
+  public setDebounceTime(ms: number) {
+    this.config.debounceMs = Math.max(100, Math.min(500, ms));
+    this.saveConfig(this.config);
   }
 
   public addActivityListener(

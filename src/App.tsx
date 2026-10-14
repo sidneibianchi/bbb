@@ -450,74 +450,161 @@ export default function App() {
     });
   }, []);
 
+  // Stable ref for pedal press/release actions shared with on-screen buttons
+  const pedalActionCallbacksRef = useRef({
+    onPedal1Down: (_isRepeat = false) => {},
+    onPedal1Up: () => {},
+    onPedal2Down: () => {},
+    onPedal2Up: () => {},
+  });
+
   // --- GLOBAL FOOSWITCH & CUVAVE / M-VAVE KEYBOARD LISTENER ---
   // Operates continuously across ALL views (Sequencer, Pedal, Samples)
   useEffect(() => {
+    let pedal1PhysicalDown = false;
+    let pedal1DownTimestamp = 0;
+    let pedal1HoldTriggered = false;
+    let pedal1StartedPlayback = false;
+    let pedal1StartPlaybackTimestamp = 0;
+    let lastPedal1ReleaseTimestamp = 0;
     let pressTimer: number | null = null;
-    let isHolding = false;
-    let startedOnDown = false;
+    let lastPedal2PressTime = 0;
+    let lastPedalTriggerTime = 0;
+    let isUserTouching = false;
+    let lastScrollY = window.scrollY || document.documentElement.scrollTop || 0;
 
     // PEDAL 1 (Principal):
-    // IN STOP: TAP -> Inicia Intro e avança para Parte A (Instantâneo no keydown!)
-    // IN PLAY: TAP -> Virada (Fill A se em Parte A, Fill B se em Parte B)
-    // IN PLAY: HOLD -> Finalização (Outro)
-    const handlePedal1Down = () => {
-      setIsExternalPedal1Pressed(true);
-      isHolding = false;
-      startedOnDown = false;
-
+    // IN STOP: TAP -> Inicia Intro e avança para Parte A (com trava de partida)
+    // IN PLAY: TAP (< holdThreshold) -> Virada (Fill A se em Parte A, Fill B se em Parte B)
+    // IN PLAY: HOLD (>= holdThreshold) -> Finalização (Ending / Outro)
+    const handlePedal1Down = (isRepeat = false) => {
       // Unmute audio immediately if locked on mobile
-      audioEngine.unlockAudioContext();
-      setIsAudioUnlocked(true);
-
-      // CRITICAL FIX: If STOPPED, start playing IMMEDIATELY on keydown (zero latency, no keyup wait)!
-      if (!stateRef.current.isPlaying) {
-        startedOnDown = true;
-        audioEngine.handlePedal1Tap();
-        triggerPedalToast('🦶 Pedal 1 (PageDown): Iniciou Reprodução!');
-        return;
+      if (!isAudioUnlocked) {
+        audioEngine.unlockAudioContext();
+        setIsAudioUnlocked(true);
       }
 
-      // If already PLAYING: hold threshold for Ending (Outro)
-      pressTimer = window.setTimeout(() => {
-        isHolding = true;
-        if (stateRef.current.isPlaying) {
+      // If already physically pressed down (e.g. OS key repeat while holding foot on pedal):
+      if (pedal1PhysicalDown || isRepeat) {
+        const holdThreshold = footswitchManager.getHoldThreshold();
+        const heldDuration = Date.now() - pedal1DownTimestamp;
+        if (
+          !pedal1HoldTriggered &&
+          heldDuration >= holdThreshold &&
+          stateRef.current.isPlaying &&
+          !stateRef.current.isOutro
+        ) {
+          pedal1HoldTriggered = true;
+          if (pressTimer) {
+            clearTimeout(pressTimer);
+            pressTimer = null;
+          }
           audioEngine.handlePedal1HoldStart();
           triggerPedalToast('🦶 Pedal 1 Segurado: Finalizando Música (Ending)');
         }
-      }, 350);
+        return;
+      }
+
+      // FIRST CONTACT of foot on Pedal 1
+      pedal1PhysicalDown = true;
+      pedal1DownTimestamp = Date.now();
+      pedal1HoldTriggered = false;
+      pedal1StartedPlayback = false;
+      setIsExternalPedal1Pressed(true);
+
+      // IN STOP: Start playback immediately
+      if (!stateRef.current.isPlaying) {
+        pedal1StartedPlayback = true;
+        pedal1StartPlaybackTimestamp = Date.now();
+        audioEngine.handlePedal1Tap();
+        triggerPedalToast('🦶 Pedal 1: Iniciou Reprodução!');
+        return;
+      }
+
+      // IN PLAY: Setup hold timer for Ending (Outro)
+      if (stateRef.current.isOutro) return;
+
+      const holdThreshold = footswitchManager.getHoldThreshold();
+      if (pressTimer) clearTimeout(pressTimer);
+      pressTimer = window.setTimeout(() => {
+        if (
+          pedal1PhysicalDown &&
+          !pedal1HoldTriggered &&
+          stateRef.current.isPlaying &&
+          !stateRef.current.isOutro
+        ) {
+          pedal1HoldTriggered = true;
+          audioEngine.handlePedal1HoldStart();
+          triggerPedalToast('🦶 Pedal 1 Segurado: Finalizando Música (Ending)');
+        }
+      }, holdThreshold);
     };
 
     const handlePedal1Up = () => {
       setIsExternalPedal1Pressed(false);
+      pedal1PhysicalDown = false;
       if (pressTimer) {
         clearTimeout(pressTimer);
         pressTimer = null;
       }
-      if (startedOnDown) {
-        startedOnDown = false;
+
+      // 1. If this press already triggered Ending by holding, consume release completely!
+      if (pedal1HoldTriggered) {
+        pedal1HoldTriggered = false;
+        lastPedal1ReleaseTimestamp = Date.now();
         return;
       }
-      if (!isHolding && stateRef.current.isPlaying) {
+
+      // 2. If this press started playback from stop, consume release completely!
+      // (The foot lifting after starting must NEVER skip intro or trigger fill!)
+      if (pedal1StartedPlayback) {
+        pedal1StartedPlayback = false;
+        lastPedal1ReleaseTimestamp = Date.now();
+        return;
+      }
+
+      // 3. Start guard: Foot lifting after starting within 700ms never skips intro or triggers fill
+      if (Date.now() - pedal1StartPlaybackTimestamp < 700) {
+        lastPedal1ReleaseTimestamp = Date.now();
+        return;
+      }
+
+      // 4. Anti-chatter debounce: ignore dirty release if within debounce time
+      const debounceMs = footswitchManager.getDebounceTime();
+      if (Date.now() - lastPedal1ReleaseTimestamp < debounceMs) {
+        return;
+      }
+      lastPedal1ReleaseTimestamp = Date.now();
+
+      // 5. Authentic intentional TAP while playing!
+      if (stateRef.current.isPlaying && !stateRef.current.isOutro) {
         if (stateRef.current.isIntro) {
+          // If tapped deliberately during intro, advance to Part A
           audioEngine.handlePedal1Tap();
           triggerPedalToast('🦶 Pedal 1: Pular Intro ➔ Parte A');
         } else {
+          // Trigger Fill for current part (Fill A if on Part A, Fill B if on Part B)
           audioEngine.handlePedal1Tap();
           const targetFill = stateRef.current.basePartId === 'part_b' ? 'Fill B' : 'Fill A';
           triggerPedalToast(`🦶 Pedal 1: Virada (${targetFill}) Disparada!`);
         }
       }
-      isHolding = false;
     };
 
     // PEDAL 2:
     // IN STOP: TAP -> Alterna PARTE A / PARTE B
     // IN PLAY: TAP -> TRANSIÇÃO A -> B / TRANSIÇÃO B -> A
     const handlePedal2Down = () => {
+      const now = Date.now();
+      const debounceMs = footswitchManager.getDebounceTime();
+      if (now - lastPedal2PressTime < Math.max(300, debounceMs)) return;
+      lastPedal2PressTime = now;
+
       setIsExternalPedal2Pressed(true);
-      audioEngine.unlockAudioContext();
-      setIsAudioUnlocked(true);
+      if (!isAudioUnlocked) {
+        audioEngine.unlockAudioContext();
+        setIsAudioUnlocked(true);
+      }
 
       if (!stateRef.current.isPlaying) {
         audioEngine.handlePedal2Tap();
@@ -534,15 +621,23 @@ export default function App() {
       setIsExternalPedal2Pressed(false);
     };
 
+    // Store callbacks for on-screen buttons
+    pedalActionCallbacksRef.current = {
+      onPedal1Down: (isRepeat = false) => handlePedal1Down(isRepeat),
+      onPedal1Up: () => handlePedal1Up(),
+      onPedal2Down: () => handlePedal2Down(),
+      onPedal2Up: () => handlePedal2Up(),
+    };
+
     // Connect footswitchManager callbacks
     footswitchManager.setCallbacks({
       onPedal1: () => {
-        handlePedal1Down();
-        setTimeout(handlePedal1Up, 120);
+        handlePedal1Down(false);
+        setTimeout(handlePedal1Up, 100);
       },
       onPedal2: () => {
         handlePedal2Down();
-        setTimeout(handlePedal2Up, 120);
+        setTimeout(handlePedal2Up, 100);
       },
       onActivity: (signal) => {
         triggerPedalToast(`🦶 Sinal Cube Turner: ${signal.value}`);
@@ -594,10 +689,6 @@ export default function App() {
       );
     };
 
-    let lastPedalTriggerTime = 0;
-    let isUserTouching = false;
-    let lastScrollY = window.scrollY || document.documentElement.scrollTop || 0;
-
     const handleTouchStart = () => {
       isUserTouching = true;
     };
@@ -612,9 +703,10 @@ export default function App() {
       const isPedal2 = footswitchManager.isPedal2Event(e);
       const isPgTurner = isPageTurnerKey(e);
 
-      // CRITICAL: Stop browser from scrolling up/down on pedal keys unconditionally!
+      // Stop browser from scrolling up/down on pedal keys unconditionally
       if (isPedal1 || isPedal2 || isPgTurner) {
         e.preventDefault();
+        e.stopPropagation();
       }
 
       // Ignore regular typing ONLY if user is typing in a real text input and it's NOT a pedal key
@@ -636,16 +728,16 @@ export default function App() {
 
       if (isPedal1) {
         e.preventDefault();
+        e.stopPropagation();
         lastPedalTriggerTime = Date.now();
         footswitchManager.notifyActivity({
           type: 'key',
           value: `PEDAL 1 (${keyLabel}) -> Disparado!`,
         });
-        if (!e.repeat) {
-          handlePedal1Down();
-        }
+        handlePedal1Down(Boolean(e.repeat));
       } else if (isPedal2) {
         e.preventDefault();
+        e.stopPropagation();
         lastPedalTriggerTime = Date.now();
         footswitchManager.notifyActivity({
           type: 'key',
@@ -677,6 +769,7 @@ export default function App() {
 
       if (isPedal1 || isPedal2 || isPgTurner) {
         e.preventDefault();
+        e.stopPropagation();
       }
 
       if (isRealTextInput(e.target) && !isPedal1 && !isPedal2 && !isPgTurner) return;
@@ -684,42 +777,42 @@ export default function App() {
 
       if (isPedal1) {
         e.preventDefault();
+        e.stopPropagation();
         handlePedal1Up();
       } else if (isPedal2) {
         e.preventDefault();
+        e.stopPropagation();
         handlePedal2Up();
       }
     };
 
     // HARDWARE SCROLL INTERCEPTOR (Android Chrome Fallback)
-    // When Android Chrome handles PageDown / PageUp natively at the OS level and scrolls the page:
+    // Only triggers if native browser swallowed key event completely (no keydown in last 800ms)
     const handleNativePageScroll = () => {
       const currentY = window.scrollY || document.documentElement.scrollTop || 0;
       const delta = currentY - lastScrollY;
       const now = Date.now();
 
-      // If user is not touching/swiping the screen, and a sudden page jump (> 70px) occurred:
-      if (!isUserTouching && Math.abs(delta) > 70 && now - lastPedalTriggerTime > 300) {
+      if (!isUserTouching && Math.abs(delta) > 70 && now - lastPedalTriggerTime > 800) {
         lastPedalTriggerTime = now;
         if (delta > 0) {
-          // Jumped down = PageDown
+          // PageDown
           footswitchManager.notifyActivity({
             type: 'key',
-            value: 'PEDAL 1 (PageDown detectado via Scroll) -> Disparado!',
+            value: 'PEDAL 1 (PageDown via Scroll)',
           });
-          handlePedal1Down();
+          handlePedal1Down(false);
           setTimeout(handlePedal1Up, 150);
         } else {
-          // Jumped up = PageUp
+          // PageUp
           footswitchManager.notifyActivity({
             type: 'key',
-            value: 'PEDAL 2 (PageUp detectado via Scroll) -> Disparado!',
+            value: 'PEDAL 2 (PageUp via Scroll)',
           });
           handlePedal2Down();
           setTimeout(handlePedal2Up, 150);
         }
 
-        // Lock scroll immediately back to previous position so the page never moves
         window.scrollTo({ top: lastScrollY, behavior: 'instant' as ScrollBehavior });
         return;
       }
@@ -730,10 +823,9 @@ export default function App() {
     window.addEventListener('touchend', handleTouchEnd, { passive: true });
     window.addEventListener('scroll', handleNativePageScroll, { passive: false });
 
+    // Single authoritative window capture listener (no duplicate on document!)
     window.addEventListener('keydown', handleKeyDown, { capture: true, passive: false });
     window.addEventListener('keyup', handleKeyUp, { capture: true, passive: false });
-    document.addEventListener('keydown', handleKeyDown, { capture: true, passive: false });
-    document.addEventListener('keyup', handleKeyUp, { capture: true, passive: false });
 
     return () => {
       window.removeEventListener('touchstart', handleTouchStart);
@@ -741,8 +833,6 @@ export default function App() {
       window.removeEventListener('scroll', handleNativePageScroll);
       window.removeEventListener('keydown', handleKeyDown, { capture: true });
       window.removeEventListener('keyup', handleKeyUp, { capture: true });
-      document.removeEventListener('keydown', handleKeyDown, { capture: true });
-      document.removeEventListener('keyup', handleKeyUp, { capture: true });
     };
   }, []);
 
@@ -1577,6 +1667,10 @@ export default function App() {
                 activeTransitionId={activeTransitionId}
                 isExternalPedal1Pressed={isExternalPedal1Pressed}
                 isExternalPedal2Pressed={isExternalPedal2Pressed}
+                onPedal1Down={() => pedalActionCallbacksRef.current.onPedal1Down(false)}
+                onPedal1Up={() => pedalActionCallbacksRef.current.onPedal1Up()}
+                onPedal2Down={() => pedalActionCallbacksRef.current.onPedal2Down()}
+                onPedal2Up={() => pedalActionCallbacksRef.current.onPedal2Up()}
                 onPedal1Tap={handlePedal1Tap}
                 onPedal1HoldStart={handlePedal1HoldStart}
                 onPedal2Tap={handlePedal2Tap}

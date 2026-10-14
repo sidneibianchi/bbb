@@ -22,6 +22,10 @@ interface PedalControllerProps {
   activeTransitionId?: SongPartId | null;
   isExternalPedal1Pressed?: boolean;
   isExternalPedal2Pressed?: boolean;
+  onPedal1Down?: () => void;
+  onPedal1Up?: () => void;
+  onPedal2Down?: () => void;
+  onPedal2Up?: () => void;
   onPedal1Tap: () => void;
   onPedal1HoldStart: () => void;
   onPedal2Tap: () => void;
@@ -42,6 +46,10 @@ export const PedalController: React.FC<PedalControllerProps> = ({
   activeTransitionId,
   isExternalPedal1Pressed = false,
   isExternalPedal2Pressed = false,
+  onPedal1Down,
+  onPedal1Up,
+  onPedal2Down,
+  onPedal2Up,
   onPedal1Tap,
   onPedal1HoldStart,
   onPedal2Tap,
@@ -120,23 +128,43 @@ export const PedalController: React.FC<PedalControllerProps> = ({
     };
   }, []);
 
+  const [holdSensitivity, setHoldSensitivity] = useState<number>(() => {
+    return footswitchManager.getHoldThreshold();
+  });
+
+  const handleSetHoldSensitivity = (ms: number) => {
+    footswitchManager.setHoldThreshold(ms);
+    setHoldSensitivity(ms);
+    setRecentPedalSignal({
+      text: `Sensibilidade: Hold em ${ms}ms (${ms === 450 ? 'Rápido' : ms === 650 ? 'Normal (Padrão BeatBuddy)' : 'Seguro'})`,
+      type: 'success',
+      timestamp: Date.now(),
+    });
+  };
+
   // Pedal 1 Press Handling (Tap: Intro or Fill / Hold: Ending)
   const handlePedal1PressStart = () => {
     handleEnsureFocus();
     setIsPedal1Pressed(true);
+    if (onPedal1Down) {
+      onPedal1Down();
+      return;
+    }
     isHoldingRef.current = false;
-
-    // Hold threshold: >= 400ms triggers Ending if playing
     pedal1PressTimerRef.current = window.setTimeout(() => {
       isHoldingRef.current = true;
       if (callbacksRef.current.isPlaying) {
         callbacksRef.current.onPedal1HoldStart();
       }
-    }, 400);
+    }, holdSensitivity);
   };
 
   const handlePedal1PressEnd = () => {
     setIsPedal1Pressed(false);
+    if (onPedal1Up) {
+      onPedal1Up();
+      return;
+    }
     if (pedal1PressTimerRef.current) {
       clearTimeout(pedal1PressTimerRef.current);
       pedal1PressTimerRef.current = null;
@@ -151,11 +179,18 @@ export const PedalController: React.FC<PedalControllerProps> = ({
   const handlePedal2PressStart = () => {
     handleEnsureFocus();
     setIsPedal2Pressed(true);
+    if (onPedal2Down) {
+      onPedal2Down();
+      return;
+    }
     callbacksRef.current.onPedal2Tap();
   };
 
   const handlePedal2PressEnd = () => {
     setIsPedal2Pressed(false);
+    if (onPedal2Up) {
+      onPedal2Up();
+    }
   };
 
   const handleQuickProfileSelect = (preset: 'universal' | 'cuvave_pgdn_pgup' | 'cuvave_pgup_pgdn' | 'cuvave_arrows' | 'cuvave_space') => {
@@ -244,7 +279,7 @@ export const PedalController: React.FC<PedalControllerProps> = ({
       onClick={handleEnsureFocus}
       className="bg-[#0f172a] rounded-2xl border border-slate-800 p-4 sm:p-6 max-w-2xl mx-auto shadow-2xl relative"
     >
-      {/* Input to capture Bluetooth footswitches (Cube Turner Pro) without soft keyboard popup */}
+      {/* Silent focus anchor to capture Bluetooth footswitches without soft keyboard popup */}
       <input
         ref={mobileInputRef}
         type="text"
@@ -256,24 +291,6 @@ export const PedalController: React.FC<PedalControllerProps> = ({
         spellCheck={false}
         value=""
         onChange={() => {}}
-        onKeyDown={(e) => {
-          if (footswitchManager.isPedal1Event(e.nativeEvent)) {
-            e.preventDefault();
-            handlePedal1PressStart();
-          } else if (footswitchManager.isPedal2Event(e.nativeEvent)) {
-            e.preventDefault();
-            handlePedal2PressStart();
-          }
-        }}
-        onKeyUp={(e) => {
-          if (footswitchManager.isPedal1Event(e.nativeEvent)) {
-            e.preventDefault();
-            handlePedal1PressEnd();
-          } else if (footswitchManager.isPedal2Event(e.nativeEvent)) {
-            e.preventDefault();
-            handlePedal2PressEnd();
-          }
-        }}
         aria-hidden="true"
         className="opacity-0 fixed -top-20 -left-20 w-1 h-1 z-0 pointer-events-auto pedal-input-receiver"
       />
@@ -480,6 +497,49 @@ export const PedalController: React.FC<PedalControllerProps> = ({
             className="ml-auto px-2.5 py-1 rounded-lg bg-purple-950/60 hover:bg-purple-900 text-purple-300 hover:text-white border border-purple-500/40 text-[11px] font-bold cursor-pointer transition-all flex items-center gap-1"
           >
             <span>⇄ Inverter Pedais</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Sensibilidade do Pedal / Hold Timer */}
+      <div className="mb-4 p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 flex flex-wrap items-center justify-between gap-2 text-xs">
+        <div className="flex items-center gap-1.5 text-slate-300">
+          <span className="text-amber-400 font-bold">⏱️ Sensibilidade Hold (Finalização):</span>
+          <span className="text-slate-400 text-[11px]">Tempo pisando para chamar o Ending</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <button
+            type="button"
+            onClick={() => handleSetHoldSensitivity(450)}
+            className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
+              holdSensitivity === 450
+                ? 'bg-amber-400 text-slate-950 shadow-xs'
+                : 'bg-slate-800 hover:bg-slate-700 text-slate-300'
+            }`}
+          >
+            450ms (Rápido)
+          </button>
+          <button
+            type="button"
+            onClick={() => handleSetHoldSensitivity(650)}
+            className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
+              holdSensitivity === 650
+                ? 'bg-emerald-400 text-slate-950 shadow-xs'
+                : 'bg-slate-800 hover:bg-slate-700 text-slate-300'
+            }`}
+          >
+            650ms (Normal - Padrão)
+          </button>
+          <button
+            type="button"
+            onClick={() => handleSetHoldSensitivity(850)}
+            className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
+              holdSensitivity === 850
+                ? 'bg-purple-400 text-slate-950 shadow-xs'
+                : 'bg-slate-800 hover:bg-slate-700 text-slate-300'
+            }`}
+          >
+            850ms (Seguro)
           </button>
         </div>
       </div>
