@@ -32,14 +32,12 @@ export const FootswitchConfigModal: React.FC<FootswitchConfigModalProps> = ({
   } | null>(null);
 
   useEffect(() => {
-    footswitchManager.setCallbacks({
-      onActivity: (signal) => {
-        setLastActivity({ ...signal, timestamp: Date.now() });
-        setConfig(footswitchManager.getConfig());
-        if (footswitchManager.getLearningTarget() === null) {
-          setLearningTarget(null);
-        }
-      },
+    const unsubscribe = footswitchManager.addActivityListener((signal) => {
+      setLastActivity({ ...signal, timestamp: Date.now() });
+      setConfig(footswitchManager.getConfig());
+      if (footswitchManager.getLearningTarget() === null) {
+        setLearningTarget(null);
+      }
     });
 
     const handleKeyActivity = (e: KeyboardEvent) => {
@@ -62,9 +60,13 @@ export const FootswitchConfigModal: React.FC<FootswitchConfigModalProps> = ({
       }
     };
 
-    window.addEventListener('keydown', handleKeyActivity);
+    window.addEventListener('keydown', handleKeyActivity, { capture: true, passive: false });
+    document.addEventListener('keydown', handleKeyActivity, { capture: true, passive: false });
+
     return () => {
-      window.removeEventListener('keydown', handleKeyActivity);
+      unsubscribe();
+      window.removeEventListener('keydown', handleKeyActivity, { capture: true });
+      document.removeEventListener('keydown', handleKeyActivity, { capture: true });
     };
   }, []);
 
@@ -74,11 +76,16 @@ export const FootswitchConfigModal: React.FC<FootswitchConfigModalProps> = ({
     let accentKeys = [...DEFAULT_FOOTSWITCH_CONFIG.accentKeys];
     let accentKeyCodes = [...DEFAULT_FOOTSWITCH_CONFIG.accentKeyCodes];
 
-    if (preset === 'cuvave_pgup_pgdn') {
-      mainKeys = ['PageDown', 'pagedown'];
-      mainKeyCodes = [34];
-      accentKeys = ['PageUp', 'pageup'];
-      accentKeyCodes = [33];
+    if (preset === 'cuvave_pgdn_pgup') {
+      mainKeys = ['PageDown', 'pagedown', 'pgdn', 'next'];
+      mainKeyCodes = [34, 93];
+      accentKeys = ['PageUp', 'pageup', 'pgup', 'prior'];
+      accentKeyCodes = [33, 92];
+    } else if (preset === 'cuvave_pgup_pgdn') {
+      mainKeys = ['PageUp', 'pageup', 'pgup', 'prior'];
+      mainKeyCodes = [33, 92];
+      accentKeys = ['PageDown', 'pagedown', 'pgdn', 'next'];
+      accentKeyCodes = [34, 93];
     } else if (preset === 'cuvave_arrows') {
       mainKeys = ['ArrowLeft', 'ArrowDown', 'arrowleft', 'arrowdown', 'Left', 'Down'];
       mainKeyCodes = [37, 40];
@@ -269,16 +276,22 @@ export const FootswitchConfigModal: React.FC<FootswitchConfigModalProps> = ({
             <div className="space-y-2">
               {[
                 {
-                  id: 'universal',
-                  title: 'Modo Universal (Recomendado para M-Vave & Cuvave)',
-                  desc: 'Aceita simultaneamente Espaço, PageDown/PageUp, Setas e Teclas B/C. Funciona sem precisar alterar nada no pedal.',
-                  keys: 'Footswitch 1: Espaço, PgDown, Seta Esq, B, 1 | Footswitch 2: PgUp, Seta Dir, Shift, C, 2',
+                  id: 'cuvave_pgdn_pgup',
+                  title: 'Modo 1: PageDown (Play / Virada) + PageUp (Acento / Transição)',
+                  desc: 'Padrão do Cuvave com chave em PgUp/PgDn. O botão PageDown inicia a levada e dispara viradas.',
+                  keys: 'Footswitch 1: PageDown | Footswitch 2: PageUp',
                 },
                 {
                   id: 'cuvave_pgup_pgdn',
-                  title: 'Modo Leitor de Partituras (PageDown / PageUp)',
-                  desc: 'Padrão original de fábrica do Cuvave Cube Turner Pro para passar páginas.',
-                  keys: 'Footswitch 1: PageDown | Footswitch 2: PageUp',
+                  title: 'Modo 2: Invertido - PageUp (Play / Virada) + PageDown (Acento)',
+                  desc: 'Inverte os pedais caso prefira o botão esquerdo para Play/Virada.',
+                  keys: 'Footswitch 1: PageUp | Footswitch 2: PageDown',
+                },
+                {
+                  id: 'universal',
+                  title: 'Modo Universal (Auto-Detecção Completa)',
+                  desc: 'Aceita simultaneamente PageDown/PageUp, Setas, Espaço/Enter e Teclas B/C sem precisar configurar.',
+                  keys: 'Footswitch 1: PgDown, Seta Esq, Espaço, B | Footswitch 2: PgUp, Seta Dir, Shift, C',
                 },
                 {
                   id: 'cuvave_arrows',

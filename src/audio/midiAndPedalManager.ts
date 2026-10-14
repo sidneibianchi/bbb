@@ -7,7 +7,7 @@
  */
 
 export interface FootswitchConfig {
-  preset: 'universal' | 'cuvave_pgup_pgdn' | 'cuvave_arrows' | 'cuvave_space' | 'custom';
+  preset: 'universal' | 'cuvave_pgdn_pgup' | 'cuvave_pgup_pgdn' | 'cuvave_arrows' | 'cuvave_space' | 'custom';
   mainKeys: string[]; // Codes or Keys that trigger the main pedal
   mainKeyCodes: number[]; // KeyCodes (e.g. 34 for PageDown, 32 for Space)
   accentKeys: string[]; // Codes or Keys that trigger the crash / accent
@@ -17,7 +17,41 @@ export interface FootswitchConfig {
   midiAccentNotes: number[];
 }
 
-const STORAGE_KEY = 'beatbuddy_footswitch_config_v2';
+const STORAGE_KEY = 'beatbuddy_footswitch_config_v3';
+
+export function isPageDownKey(e: KeyboardEvent): boolean {
+  const k = (e.key || '').toLowerCase().replace(/[-_\s]/g, '');
+  const c = (e.code || '').toLowerCase().replace(/[-_\s]/g, '');
+  const code = e.keyCode || e.which || 0;
+  return (
+    code === 34 || // Standard PageDown
+    code === 93 || // Android KEYCODE_PAGE_DOWN
+    k === 'pagedown' ||
+    k === 'pgdn' ||
+    k === 'next' ||
+    k.includes('pagedown') ||
+    k.includes('pgdn') ||
+    c === 'pagedown' ||
+    c === 'numpad3'
+  );
+}
+
+export function isPageUpKey(e: KeyboardEvent): boolean {
+  const k = (e.key || '').toLowerCase().replace(/[-_\s]/g, '');
+  const c = (e.code || '').toLowerCase().replace(/[-_\s]/g, '');
+  const code = e.keyCode || e.which || 0;
+  return (
+    code === 33 || // Standard PageUp
+    code === 92 || // Android KEYCODE_PAGE_UP
+    k === 'pageup' ||
+    k === 'pgup' ||
+    k === 'prior' ||
+    k.includes('pageup') ||
+    k.includes('pgup') ||
+    c === 'pageup' ||
+    c === 'numpad9'
+  );
+}
 
 export const DEFAULT_FOOTSWITCH_CONFIG: FootswitchConfig = {
   preset: 'universal',
@@ -28,6 +62,8 @@ export const DEFAULT_FOOTSWITCH_CONFIG: FootswitchConfig = {
     'Spacebar',
     'PageDown',
     'pagedown',
+    'pgdn',
+    'next',
     'ArrowLeft',
     'arrowleft',
     'ArrowDown',
@@ -50,7 +86,7 @@ export const DEFAULT_FOOTSWITCH_CONFIG: FootswitchConfig = {
     'AudioVolumeDown',
     'VolumeDown',
   ],
-  mainKeyCodes: [32, 34, 37, 40, 13, 66, 65, 49, 97, 177, 179, 174, 25],
+  mainKeyCodes: [32, 34, 93, 37, 40, 13, 66, 65, 49, 97, 177, 179, 174, 25],
   // Covers Cuvave modes: PageUp, ArrowRight, ArrowUp, Shift, 'C', 'D', '2', MediaTrackNext, VolumeUp
   accentKeys: [
     'ShiftLeft',
@@ -58,6 +94,8 @@ export const DEFAULT_FOOTSWITCH_CONFIG: FootswitchConfig = {
     'Shift',
     'PageUp',
     'pageup',
+    'pgup',
+    'prior',
     'ArrowRight',
     'arrowright',
     'ArrowUp',
@@ -77,7 +115,7 @@ export const DEFAULT_FOOTSWITCH_CONFIG: FootswitchConfig = {
     'AudioVolumeUp',
     'VolumeUp',
   ],
-  accentKeyCodes: [16, 33, 39, 38, 67, 68, 50, 98, 176, 175, 24],
+  accentKeyCodes: [16, 33, 92, 39, 38, 67, 68, 50, 98, 176, 175, 24],
   midiEnabled: true,
   midiMainNotes: [60, 64, 36, 48, 1, 65], // Middle C, CC64 Sustain, Bass C, C3, CC1, CC65
   midiAccentNotes: [62, 65, 38, 50, 2, 66], // D, CC65, D3, CC2, CC66
@@ -90,6 +128,7 @@ export class FootswitchManager {
   private onPedal1Callback: (() => void) | null = null;
   private onPedal2Callback: (() => void) | null = null;
   private onActivityCallback: ((signal: { type: 'key' | 'midi' | 'ble'; value: string; rawEvent?: unknown }) => void) | null = null;
+  private activityListeners: Set<(signal: { type: 'key' | 'midi' | 'ble'; value: string; rawEvent?: unknown }) => void> = new Set();
 
   // Learning mode ('pedal1' | 'pedal2' | 'main' | 'accent')
   private learningTarget: 'pedal1' | 'pedal2' | 'main' | 'accent' | null = null;
@@ -124,6 +163,15 @@ export class FootswitchManager {
     return { ...this.config };
   }
 
+  public addActivityListener(
+    listener: (signal: { type: 'key' | 'midi' | 'ble'; value: string; rawEvent?: unknown }) => void
+  ): () => void {
+    this.activityListeners.add(listener);
+    return () => {
+      this.activityListeners.delete(listener);
+    };
+  }
+
   public setCallbacks(callbacks: {
     onPedal1?: () => void;
     onPedal2?: () => void;
@@ -137,7 +185,10 @@ export class FootswitchManager {
     if (callbacks.onPedal2) this.onPedal2Callback = callbacks.onPedal2;
     else if (callbacks.onAccent) this.onPedal2Callback = callbacks.onAccent;
 
-    if (callbacks.onActivity) this.onActivityCallback = callbacks.onActivity;
+    if (callbacks.onActivity) {
+      this.onActivityCallback = callbacks.onActivity;
+      this.activityListeners.add(callbacks.onActivity);
+    }
   }
 
   // --- Web MIDI API Integration ---
@@ -233,16 +284,54 @@ export class FootswitchManager {
     }
   }
 
+  // Swap Pedal 1 and Pedal 2 (PgDn <-> PgUp, etc.)
+  public swapPedals(): FootswitchConfig {
+    const tempKeys = [...this.config.mainKeys];
+    const tempCodes = [...this.config.mainKeyCodes];
+    const tempMidi = [...this.config.midiMainNotes];
+
+    let nextPreset: FootswitchConfig['preset'] = this.config.preset;
+    if (this.config.preset === 'cuvave_pgdn_pgup') {
+      nextPreset = 'cuvave_pgup_pgdn';
+    } else if (this.config.preset === 'cuvave_pgup_pgdn') {
+      nextPreset = 'cuvave_pgdn_pgup';
+    }
+
+    const nextConfig: FootswitchConfig = {
+      ...this.config,
+      preset: nextPreset,
+      mainKeys: [...this.config.accentKeys],
+      mainKeyCodes: [...this.config.accentKeyCodes],
+      accentKeys: tempKeys,
+      accentKeyCodes: tempCodes,
+      midiMainNotes: [...this.config.midiAccentNotes],
+      midiAccentNotes: tempMidi,
+    };
+    this.saveConfig(nextConfig);
+    return nextConfig;
+  }
+
   // --- Key Evaluation Helpers ---
   public isPedal1Event(e: KeyboardEvent): boolean {
-    const code = (e.code || '').toLowerCase();
-    const key = (e.key || '').toLowerCase();
+    // If user inverted profile (PageUp on Pedal 1, PageDown on Pedal 2)
+    if (this.config.preset === 'cuvave_pgup_pgdn') {
+      if (isPageUpKey(e)) return true;
+    } else {
+      // In all default & standard profiles, PageDown is ALWAYS Pedal 1 (Intro/Play/Fill/Outro)
+      if (isPageDownKey(e)) return true;
+    }
+
+    const rawCode = (e.code || '').toLowerCase();
+    const rawKey = (e.key || '').toLowerCase();
+    const cleanKey = rawKey.replace(/[-_\s]/g, '');
+    const cleanCode = rawCode.replace(/[-_\s]/g, '');
     const keyCode = e.keyCode || e.which || 0;
 
-    const mainLower = this.config.mainKeys.map((k) => k.toLowerCase());
-    if (code && mainLower.includes(code)) return true;
-    if (key && mainLower.includes(key)) return true;
+    const mainClean = this.config.mainKeys.map((k) => k.toLowerCase().replace(/[-_\s]/g, ''));
+    if (cleanCode && mainClean.includes(cleanCode)) return true;
+    if (cleanKey && mainClean.includes(cleanKey)) return true;
     if (keyCode && this.config.mainKeyCodes.includes(keyCode)) return true;
+
     return false;
   }
 
@@ -252,14 +341,25 @@ export class FootswitchManager {
   }
 
   public isPedal2Event(e: KeyboardEvent): boolean {
-    const code = (e.code || '').toLowerCase();
-    const key = (e.key || '').toLowerCase();
+    // If user inverted profile (PageUp on Pedal 1, PageDown on Pedal 2)
+    if (this.config.preset === 'cuvave_pgup_pgdn') {
+      if (isPageDownKey(e)) return true;
+    } else {
+      // In all default & standard profiles, PageUp is ALWAYS Pedal 2 (Parte A/B & Transição)
+      if (isPageUpKey(e)) return true;
+    }
+
+    const rawCode = (e.code || '').toLowerCase();
+    const rawKey = (e.key || '').toLowerCase();
+    const cleanKey = rawKey.replace(/[-_\s]/g, '');
+    const cleanCode = rawCode.replace(/[-_\s]/g, '');
     const keyCode = e.keyCode || e.which || 0;
 
-    const accentLower = this.config.accentKeys.map((k) => k.toLowerCase());
-    if (code && accentLower.includes(code)) return true;
-    if (key && accentLower.includes(key)) return true;
+    const accentClean = this.config.accentKeys.map((k) => k.toLowerCase().replace(/[-_\s]/g, ''));
+    if (cleanCode && accentClean.includes(cleanCode)) return true;
+    if (cleanKey && accentClean.includes(cleanKey)) return true;
     if (keyCode && this.config.accentKeyCodes.includes(keyCode)) return true;
+
     return false;
   }
 
@@ -365,7 +465,20 @@ export class FootswitchManager {
   }
 
   public notifyActivity(signal: { type: 'key' | 'midi' | 'ble'; value: string; rawEvent?: unknown }) {
-    this.onActivityCallback?.(signal);
+    if (this.onActivityCallback) {
+      try {
+        this.onActivityCallback(signal);
+      } catch (err) {
+        console.error('Error in onActivityCallback:', err);
+      }
+    }
+    for (const listener of this.activityListeners) {
+      try {
+        listener(signal);
+      } catch (err) {
+        console.error('Error in activityListener:', err);
+      }
+    }
   }
 }
 

@@ -62,7 +62,7 @@ export const PedalController: React.FC<PedalControllerProps> = ({
     rawKey?: string;
     rawKeyCode?: number;
   }>({
-    text: 'Aguardando pisada no pedal Cube Turner Pro...',
+    text: 'Pedal Pronto (PageDown = Pedal 1 / PageUp = Pedal 2) • Pise no pedal para testar',
     type: 'idle',
     timestamp: 0,
   });
@@ -95,52 +95,28 @@ export const PedalController: React.FC<PedalControllerProps> = ({
   };
 
   useEffect(() => {
-    const handleActivity = (signal: { type: 'key' | 'midi' | 'ble'; value: string; rawEvent?: unknown }) => {
+    // Auto-focus on mount to ensure Bluetooth keyboard pedals are captured immediately
+    handleEnsureFocus();
+
+    const handleWindowFocus = () => {
+      handleEnsureFocus();
+    };
+    window.addEventListener('focus', handleWindowFocus);
+    window.addEventListener('pointerdown', handleEnsureFocus, { passive: true });
+
+    // Listen to all activity signals broadcast by footswitchManager
+    const unsubscribe = footswitchManager.addActivityListener((signal) => {
       setRecentPedalSignal({
         text: signal.value,
         type: 'success',
         timestamp: Date.now(),
       });
-    };
-
-    footswitchManager.setCallbacks({
-      onActivity: handleActivity,
     });
 
-    const handleGlobalKeyMonitor = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLTextAreaElement) return;
-      if (e.target instanceof HTMLInputElement && e.target !== mobileInputRef.current) return;
-
-      const isP1 = footswitchManager.isPedal1Event(e);
-      const isP2 = footswitchManager.isPedal2Event(e);
-      const keyLabel = e.key === ' ' ? 'Espaço' : (e.key || e.code || `KeyCode #${e.keyCode}`);
-
-      if (isP1) {
-        setRecentPedalSignal({
-          text: `Sinal "${keyLabel}" -> Acionou PEDAL 1!`,
-          type: 'success',
-          timestamp: Date.now(),
-        });
-      } else if (isP2) {
-        setRecentPedalSignal({
-          text: `Sinal "${keyLabel}" -> Acionou PEDAL 2!`,
-          type: 'success',
-          timestamp: Date.now(),
-        });
-      } else {
-        setRecentPedalSignal({
-          text: `Sinal detectado: "${keyLabel}" (KeyCode: ${e.keyCode})`,
-          type: 'unmapped',
-          timestamp: Date.now(),
-          rawKey: e.key || e.code,
-          rawKeyCode: e.keyCode,
-        });
-      }
-    };
-
-    window.addEventListener('keydown', handleGlobalKeyMonitor, { capture: true, passive: true });
     return () => {
-      window.removeEventListener('keydown', handleGlobalKeyMonitor, { capture: true });
+      window.removeEventListener('focus', handleWindowFocus);
+      window.removeEventListener('pointerdown', handleEnsureFocus);
+      unsubscribe();
     };
   }, []);
 
@@ -182,28 +158,46 @@ export const PedalController: React.FC<PedalControllerProps> = ({
     setIsPedal2Pressed(false);
   };
 
-  const handleQuickProfileSelect = (preset: 'universal' | 'cuvave_arrows' | 'cuvave_pgup_pgdn' | 'cuvave_space') => {
+  const handleQuickProfileSelect = (preset: 'universal' | 'cuvave_pgdn_pgup' | 'cuvave_pgup_pgdn' | 'cuvave_arrows' | 'cuvave_space') => {
     const cfg = footswitchManager.getConfig();
     let mainKeys = [...cfg.mainKeys];
     let mainKeyCodes = [...cfg.mainKeyCodes];
     let accentKeys = [...cfg.accentKeys];
     let accentKeyCodes = [...cfg.accentKeyCodes];
 
-    if (preset === 'cuvave_arrows') {
+    if (preset === 'cuvave_pgdn_pgup') {
+      mainKeys = ['PageDown', 'pagedown', 'pgdn', 'next'];
+      mainKeyCodes = [34, 93];
+      accentKeys = ['PageUp', 'pageup', 'pgup', 'prior'];
+      accentKeyCodes = [33, 92];
+    } else if (preset === 'cuvave_pgup_pgdn') {
+      mainKeys = ['PageUp', 'pageup', 'pgup', 'prior'];
+      mainKeyCodes = [33, 92];
+      accentKeys = ['PageDown', 'pagedown', 'pgdn', 'next'];
+      accentKeyCodes = [34, 93];
+    } else if (preset === 'cuvave_arrows') {
       mainKeys = ['ArrowLeft', 'ArrowDown', 'Left', 'Down'];
       mainKeyCodes = [37, 40];
       accentKeys = ['ArrowRight', 'ArrowUp', 'Right', 'Up'];
       accentKeyCodes = [39, 38];
-    } else if (preset === 'cuvave_pgup_pgdn') {
-      mainKeys = ['PageDown', 'pagedown'];
-      mainKeyCodes = [34];
-      accentKeys = ['PageUp', 'pageup'];
-      accentKeyCodes = [33];
     } else if (preset === 'cuvave_space') {
       mainKeys = ['Space', ' ', 'Spacebar'];
       mainKeyCodes = [32];
       accentKeys = ['Enter', 'Return'];
       accentKeyCodes = [13];
+    } else if (preset === 'universal') {
+      mainKeys = [
+        'Space', ' ', 'Spacebar', 'PageDown', 'pagedown', 'pgdn', 'next',
+        'ArrowLeft', 'arrowleft', 'ArrowDown', 'arrowdown', 'Left', 'Down',
+        'Enter', 'Return', 'KeyB', 'b', 'B', 'KeyA', 'a', 'A', 'Digit1', '1',
+      ];
+      mainKeyCodes = [32, 34, 93, 37, 40, 13, 66, 65, 49];
+      accentKeys = [
+        'ShiftLeft', 'ShiftRight', 'Shift', 'PageUp', 'pageup', 'pgup', 'prior',
+        'ArrowRight', 'arrowright', 'ArrowUp', 'arrowup', 'Right', 'Up',
+        'KeyC', 'c', 'C', 'KeyD', 'd', 'D', 'Digit2', '2',
+      ];
+      accentKeyCodes = [16, 33, 92, 39, 38, 67, 68, 50];
     }
 
     const nextConfig = {
@@ -217,7 +211,19 @@ export const PedalController: React.FC<PedalControllerProps> = ({
     footswitchManager.saveConfig(nextConfig);
     setActiveProfile(preset);
     setRecentPedalSignal({
-      text: `Perfil "${preset}" aplicado com sucesso!`,
+      text: `Perfil "${preset}" ativo!`,
+      type: 'success',
+      timestamp: Date.now(),
+    });
+  };
+
+  const handleSwapPedals = () => {
+    const nextCfg = footswitchManager.swapPedals();
+    setActiveProfile(nextCfg.preset);
+    const p1Label = nextCfg.mainKeys.includes('PageUp') ? 'PageUp' : 'PageDown';
+    const p2Label = nextCfg.accentKeys.includes('PageDown') ? 'PageDown' : 'PageUp';
+    setRecentPedalSignal({
+      text: `Pedais invertidos: Pedal 1 = ${p1Label} | Pedal 2 = ${p2Label}`,
       type: 'success',
       timestamp: Date.now(),
     });
@@ -243,14 +249,33 @@ export const PedalController: React.FC<PedalControllerProps> = ({
         ref={mobileInputRef}
         type="text"
         inputMode="none"
+        data-pedal-input="true"
         autoComplete="off"
         autoCorrect="off"
         autoCapitalize="off"
         spellCheck={false}
         value=""
         onChange={() => {}}
+        onKeyDown={(e) => {
+          if (footswitchManager.isPedal1Event(e.nativeEvent)) {
+            e.preventDefault();
+            handlePedal1PressStart();
+          } else if (footswitchManager.isPedal2Event(e.nativeEvent)) {
+            e.preventDefault();
+            handlePedal2PressStart();
+          }
+        }}
+        onKeyUp={(e) => {
+          if (footswitchManager.isPedal1Event(e.nativeEvent)) {
+            e.preventDefault();
+            handlePedal1PressEnd();
+          } else if (footswitchManager.isPedal2Event(e.nativeEvent)) {
+            e.preventDefault();
+            handlePedal2PressEnd();
+          }
+        }}
         aria-hidden="true"
-        className="opacity-0 fixed -top-20 -left-20 w-1 h-1 z-0 pointer-events-auto"
+        className="opacity-0 fixed -top-20 -left-20 w-1 h-1 z-0 pointer-events-auto pedal-input-receiver"
       />
 
       {/* Header */}
@@ -403,39 +428,58 @@ export const PedalController: React.FC<PedalControllerProps> = ({
 
         {/* Quick Mode Profiles */}
         <div className="flex items-center gap-1.5 mt-2 pt-2 border-t border-slate-800/80 text-[11px] flex-wrap">
-          <span className="text-slate-400">Modos Cube Turner:</span>
+          <span className="text-slate-400 font-medium">Modos Cube Turner:</span>
           <button
             type="button"
-            onClick={() => handleQuickProfileSelect('cuvave_arrows')}
-            className={`px-2 py-0.5 rounded cursor-pointer transition-colors ${
-              activeProfile === 'cuvave_arrows'
-                ? 'bg-amber-400 text-slate-950 font-bold'
+            onClick={() => handleQuickProfileSelect('cuvave_pgdn_pgup')}
+            className={`px-2.5 py-1 rounded-lg cursor-pointer transition-colors font-semibold ${
+              activeProfile === 'cuvave_pgdn_pgup'
+                ? 'bg-amber-400 text-slate-950 font-bold shadow-xs'
                 : 'bg-slate-900 hover:bg-slate-800 text-slate-300'
             }`}
           >
-            Modo Setas (Esq / Dir)
+            PgDn (Play) + PgUp (Acento)
           </button>
           <button
             type="button"
             onClick={() => handleQuickProfileSelect('cuvave_pgup_pgdn')}
-            className={`px-2 py-0.5 rounded cursor-pointer transition-colors ${
+            className={`px-2.5 py-1 rounded-lg cursor-pointer transition-colors font-semibold ${
               activeProfile === 'cuvave_pgup_pgdn'
-                ? 'bg-amber-400 text-slate-950 font-bold'
+                ? 'bg-amber-400 text-slate-950 font-bold shadow-xs'
                 : 'bg-slate-900 hover:bg-slate-800 text-slate-300'
             }`}
           >
-            Modo PgDn / PgUp
+            PgUp (Play) + PgDn (Acento)
           </button>
           <button
             type="button"
-            onClick={() => handleQuickProfileSelect('cuvave_space')}
-            className={`px-2 py-0.5 rounded cursor-pointer transition-colors ${
-              activeProfile === 'cuvave_space'
-                ? 'bg-amber-400 text-slate-950 font-bold'
+            onClick={() => handleQuickProfileSelect('cuvave_arrows')}
+            className={`px-2.5 py-1 rounded-lg cursor-pointer transition-colors font-semibold ${
+              activeProfile === 'cuvave_arrows'
+                ? 'bg-amber-400 text-slate-950 font-bold shadow-xs'
                 : 'bg-slate-900 hover:bg-slate-800 text-slate-300'
             }`}
           >
-            Espaço / Enter
+            Setas (Esq / Dir)
+          </button>
+          <button
+            type="button"
+            onClick={() => handleQuickProfileSelect('universal')}
+            className={`px-2.5 py-1 rounded-lg cursor-pointer transition-colors font-semibold ${
+              activeProfile === 'universal'
+                ? 'bg-amber-400 text-slate-950 font-bold shadow-xs'
+                : 'bg-slate-900 hover:bg-slate-800 text-slate-300'
+            }`}
+          >
+            Universal (Auto)
+          </button>
+          <button
+            type="button"
+            onClick={handleSwapPedals}
+            title="Inverter qual botão do pedal dispara o Play e qual dispara a Transição"
+            className="ml-auto px-2.5 py-1 rounded-lg bg-purple-950/60 hover:bg-purple-900 text-purple-300 hover:text-white border border-purple-500/40 text-[11px] font-bold cursor-pointer transition-all flex items-center gap-1"
+          >
+            <span>⇄ Inverter Pedais</span>
           </button>
         </div>
       </div>

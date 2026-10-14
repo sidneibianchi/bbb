@@ -455,23 +455,37 @@ export default function App() {
   useEffect(() => {
     let pressTimer: number | null = null;
     let isHolding = false;
+    let startedOnDown = false;
 
-    // PEDAL 1:
-    // IN STOP: TAP -> INTRO
-    // IN PLAY: TAP -> FILL A / FILL B
-    // HOLD: ENDING
+    // PEDAL 1 (Principal):
+    // IN STOP: TAP -> Inicia Intro e avança para Parte A (Instantâneo no keydown!)
+    // IN PLAY: TAP -> Virada (Fill A se em Parte A, Fill B se em Parte B)
+    // IN PLAY: HOLD -> Finalização (Outro)
     const handlePedal1Down = () => {
       setIsExternalPedal1Pressed(true);
       isHolding = false;
+      startedOnDown = false;
 
-      // Hold threshold: >= 400ms triggers Ending if playing
+      // Unmute audio immediately if locked on mobile
+      audioEngine.unlockAudioContext();
+      setIsAudioUnlocked(true);
+
+      // CRITICAL FIX: If STOPPED, start playing IMMEDIATELY on keydown (zero latency, no keyup wait)!
+      if (!stateRef.current.isPlaying) {
+        startedOnDown = true;
+        audioEngine.handlePedal1Tap();
+        triggerPedalToast('🦶 Pedal 1 (PageDown): Iniciou Reprodução!');
+        return;
+      }
+
+      // If already PLAYING: hold threshold for Ending (Outro)
       pressTimer = window.setTimeout(() => {
         isHolding = true;
         if (stateRef.current.isPlaying) {
           audioEngine.handlePedal1HoldStart();
           triggerPedalToast('🦶 Pedal 1 Segurado: Finalizando Música (Ending)');
         }
-      }, 400);
+      }, 350);
     };
 
     const handlePedal1Up = () => {
@@ -480,13 +494,14 @@ export default function App() {
         clearTimeout(pressTimer);
         pressTimer = null;
       }
-      if (!isHolding) {
-        if (!stateRef.current.isPlaying) {
+      if (startedOnDown) {
+        startedOnDown = false;
+        return;
+      }
+      if (!isHolding && stateRef.current.isPlaying) {
+        if (stateRef.current.isIntro) {
           audioEngine.handlePedal1Tap();
-          triggerPedalToast('🦶 Pedal 1: Iniciar com Intro');
-        } else if (stateRef.current.isIntro) {
-          audioEngine.handlePedal1Tap();
-          triggerPedalToast('🦶 Pedal 1: Pular Intro -> Parte A');
+          triggerPedalToast('🦶 Pedal 1: Pular Intro ➔ Parte A');
         } else {
           audioEngine.handlePedal1Tap();
           const targetFill = stateRef.current.basePartId === 'part_b' ? 'Fill B' : 'Fill A';
@@ -501,14 +516,17 @@ export default function App() {
     // IN PLAY: TAP -> TRANSIÇÃO A -> B / TRANSIÇÃO B -> A
     const handlePedal2Down = () => {
       setIsExternalPedal2Pressed(true);
+      audioEngine.unlockAudioContext();
+      setIsAudioUnlocked(true);
+
       if (!stateRef.current.isPlaying) {
         audioEngine.handlePedal2Tap();
         const nextPart = stateRef.current.selectedStartPart === 'verse' ? 'Parte B' : 'Parte A';
-        triggerPedalToast(`🦶 Pedal 2: Selecionada ${nextPart} para iniciar`);
+        triggerPedalToast(`🦶 Pedal 2 (PageUp): Selecionada ${nextPart} para iniciar`);
       } else {
         audioEngine.handlePedal2Tap();
         const transLabel = stateRef.current.basePartId === 'part_b' ? 'Transição B ➔ A' : 'Transição A ➔ B';
-        triggerPedalToast(`🦶 Pedal 2: ${transLabel} Disparada!`);
+        triggerPedalToast(`🦶 Pedal 2 (PageUp): ${transLabel} Disparada!`);
       }
     };
 
@@ -520,20 +538,87 @@ export default function App() {
     footswitchManager.setCallbacks({
       onPedal1: () => {
         handlePedal1Down();
-        setTimeout(handlePedal1Up, 150);
+        setTimeout(handlePedal1Up, 120);
       },
       onPedal2: () => {
         handlePedal2Down();
-        setTimeout(handlePedal2Up, 150);
+        setTimeout(handlePedal2Up, 120);
       },
       onActivity: (signal) => {
         triggerPedalToast(`🦶 Sinal Cube Turner: ${signal.value}`);
       },
     });
 
+    const isRealTextInput = (el: EventTarget | null): boolean => {
+      if (!el) return false;
+      if (el instanceof HTMLTextAreaElement) return true;
+      if (el instanceof HTMLInputElement) {
+        if (
+          el.getAttribute('inputmode') === 'none' ||
+          el.getAttribute('data-pedal-input') === 'true' ||
+          el.classList.contains('pedal-input-receiver') ||
+          el.type === 'hidden'
+        ) {
+          return false;
+        }
+        return ['text', 'search', 'email', 'number', 'password', 'url'].includes(
+          el.type.toLowerCase()
+        );
+      }
+      return false;
+    };
+
+    const isPageTurnerKey = (e: KeyboardEvent): boolean => {
+      const code = e.keyCode || e.which || 0;
+      const k = (e.key || '').toLowerCase().replace(/[-_\s]/g, '');
+      const c = (e.code || '').toLowerCase().replace(/[-_\s]/g, '');
+      return (
+        code === 33 || // PageUp
+        code === 34 || // PageDown
+        code === 37 || // ArrowLeft
+        code === 38 || // ArrowUp
+        code === 39 || // ArrowRight
+        code === 40 || // ArrowDown
+        code === 32 || // Space
+        code === 92 || // Android PageUp
+        code === 93 || // Android PageDown
+        k === 'pagedown' ||
+        k === 'pageup' ||
+        k === 'next' ||
+        k === 'prior' ||
+        k === 'pgdn' ||
+        k === 'pgup' ||
+        k.startsWith('arrow') ||
+        c === 'pagedown' ||
+        c === 'pageup'
+      );
+    };
+
+    let lastPedalTriggerTime = 0;
+    let isUserTouching = false;
+    let lastScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+
+    const handleTouchStart = () => {
+      isUserTouching = true;
+    };
+    const handleTouchEnd = () => {
+      setTimeout(() => {
+        isUserTouching = false;
+      }, 200);
+    };
+
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Ignore if typing in text inputs
-      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+      const isPedal1 = footswitchManager.isPedal1Event(e);
+      const isPedal2 = footswitchManager.isPedal2Event(e);
+      const isPgTurner = isPageTurnerKey(e);
+
+      // CRITICAL: Stop browser from scrolling up/down on pedal keys unconditionally!
+      if (isPedal1 || isPedal2 || isPgTurner) {
+        e.preventDefault();
+      }
+
+      // Ignore regular typing ONLY if user is typing in a real text input and it's NOT a pedal key
+      if (isRealTextInput(e.target) && !isPedal1 && !isPedal2 && !isPgTurner) return;
 
       // Unmute audio immediately if locked on mobile
       if (!isAudioUnlocked) {
@@ -547,42 +632,103 @@ export default function App() {
         return;
       }
 
-      if (footswitchManager.isPedal1Event(e)) {
+      const keyLabel = e.key === ' ' ? 'Espaço' : (e.key || e.code || `KeyCode #${e.keyCode}`);
+
+      if (isPedal1) {
         e.preventDefault();
-        e.stopPropagation();
+        lastPedalTriggerTime = Date.now();
+        footswitchManager.notifyActivity({
+          type: 'key',
+          value: `PEDAL 1 (${keyLabel}) -> Disparado!`,
+        });
         if (!e.repeat) {
           handlePedal1Down();
         }
-      } else if (footswitchManager.isPedal2Event(e)) {
+      } else if (isPedal2) {
         e.preventDefault();
-        e.stopPropagation();
+        lastPedalTriggerTime = Date.now();
+        footswitchManager.notifyActivity({
+          type: 'key',
+          value: `PEDAL 2 (${keyLabel}) -> Disparado!`,
+        });
         if (!e.repeat) {
           handlePedal2Down();
         }
-      } else if (!e.repeat && (e.key.length === 1 || e.key.startsWith('Arrow') || e.key.startsWith('Page') || e.key === ' ' || e.key === 'Enter')) {
+      } else if (
+        !e.repeat &&
+        (e.key.length === 1 ||
+          e.key.startsWith('Arrow') ||
+          e.key.startsWith('Page') ||
+          e.key === ' ' ||
+          e.key === 'Enter')
+      ) {
         // Real-time notification for unmapped pedal signal
-        const keyName = e.key === ' ' ? 'Espaço' : (e.key || e.code || `KeyCode #${e.keyCode}`);
         footswitchManager.notifyActivity({
           type: 'key',
-          value: `Sinal "${keyName}" (Pressione "Configurar Pedal" no topo para calibrar)`
+          value: `Sinal "${keyLabel}" (Pressione "Configurar Pedal" para calibrar)`,
         });
       }
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+      const isPedal1 = footswitchManager.isPedal1Event(e);
+      const isPedal2 = footswitchManager.isPedal2Event(e);
+      const isPgTurner = isPageTurnerKey(e);
+
+      if (isPedal1 || isPedal2 || isPgTurner) {
+        e.preventDefault();
+      }
+
+      if (isRealTextInput(e.target) && !isPedal1 && !isPedal2 && !isPgTurner) return;
       if (footswitchManager.getLearningTarget() !== null) return;
 
-      if (footswitchManager.isPedal1Event(e)) {
+      if (isPedal1) {
         e.preventDefault();
-        e.stopPropagation();
         handlePedal1Up();
-      } else if (footswitchManager.isPedal2Event(e)) {
+      } else if (isPedal2) {
         e.preventDefault();
-        e.stopPropagation();
         handlePedal2Up();
       }
     };
+
+    // HARDWARE SCROLL INTERCEPTOR (Android Chrome Fallback)
+    // When Android Chrome handles PageDown / PageUp natively at the OS level and scrolls the page:
+    const handleNativePageScroll = () => {
+      const currentY = window.scrollY || document.documentElement.scrollTop || 0;
+      const delta = currentY - lastScrollY;
+      const now = Date.now();
+
+      // If user is not touching/swiping the screen, and a sudden page jump (> 70px) occurred:
+      if (!isUserTouching && Math.abs(delta) > 70 && now - lastPedalTriggerTime > 300) {
+        lastPedalTriggerTime = now;
+        if (delta > 0) {
+          // Jumped down = PageDown
+          footswitchManager.notifyActivity({
+            type: 'key',
+            value: 'PEDAL 1 (PageDown detectado via Scroll) -> Disparado!',
+          });
+          handlePedal1Down();
+          setTimeout(handlePedal1Up, 150);
+        } else {
+          // Jumped up = PageUp
+          footswitchManager.notifyActivity({
+            type: 'key',
+            value: 'PEDAL 2 (PageUp detectado via Scroll) -> Disparado!',
+          });
+          handlePedal2Down();
+          setTimeout(handlePedal2Up, 150);
+        }
+
+        // Lock scroll immediately back to previous position so the page never moves
+        window.scrollTo({ top: lastScrollY, behavior: 'instant' as ScrollBehavior });
+        return;
+      }
+      lastScrollY = currentY;
+    };
+
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
+    window.addEventListener('scroll', handleNativePageScroll, { passive: false });
 
     window.addEventListener('keydown', handleKeyDown, { capture: true, passive: false });
     window.addEventListener('keyup', handleKeyUp, { capture: true, passive: false });
@@ -590,6 +736,9 @@ export default function App() {
     document.addEventListener('keyup', handleKeyUp, { capture: true, passive: false });
 
     return () => {
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleTouchEnd);
+      window.removeEventListener('scroll', handleNativePageScroll);
       window.removeEventListener('keydown', handleKeyDown, { capture: true });
       window.removeEventListener('keyup', handleKeyUp, { capture: true });
       document.removeEventListener('keydown', handleKeyDown, { capture: true });
